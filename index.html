@@ -1,197 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>ePatrika</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="./assets/images/logo-g.png" />
 
-<head>
-    <meta charset="UTF-8">
-    <title>ePatrika</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="./assets/images/logo-g.png">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
-<style>
-    * {
-    font-family: "Montserrat", serif;
-}
+        <!-- Load custom styles first -->
+        <link rel="stylesheet" href="./css/edgepane.css" />
 
-.nav_active::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: -1px;
-    right: -1px;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-    background: transparent;
-    box-shadow: 0.475rem 0.475rem #F7FEE7;
-  }
+        <!-- Then load Tailwind so it can override defaults -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  .nav_active::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    margin-top: -1px;
-    right: -1px;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    background: transparent;
-    box-shadow: 0.475rem -0.475rem #F7FEE7;
-  }
-</style>
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+    </head>
+    <style>
+        * {
+            font-family: "Montserrat", serif;
+        }
+    </style>
 
-<body class="h-screen flex text-xs sm:text-sm relative overflow-hidden bg-green-600 antialiased">
-    <!-- Overlay for small screens -->
-    <div class="nav-overlay fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
-    <!-- Navbar —— action:nav_open , nav_close -->
-    <nav class="side_nav absolute top-0 left-0 z-50 h-screen bg-green-600 transition-all duration-200 ease-linear overflow-hidden -left-full lg:left-0 lg:w-[4.5rem] flex flex-col shadow-lg lg:shadow-none" data-state="nav_close">
-        <div class="px-4 py-4 flex items-center border-gray-300 flex-shrink-0 border-">
-            <img src="./assets/images/logo.png" alt="" class="h-8 w-8 flex-shrink-0">
-            <div class="text-white nav_heading w-0 overflow-hidden whitespace-nowrap">
-                <p class="text-lg lg:leading-tight font-semibold ml-2">ePatrika</p>
-                <p class="text-xs lg:leading-3  ml-2">Desk to Destination Instantly</p>
+    <body
+        class="h-screen flex text-xs sm:text-sm relative overflow-hidden antialiased"
+    >
+        <!-- Overlay for small screens -->
+        <div class="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <nav class="sidebar bg-neutral-800" data-state="closed">
+            <!-- Sidebar header -->
+            <div class="sidebar-header">
+                <img src="" alt="Logo" class="sidebar-logo" />
+                <div class="sidebar-title">
+                    <p class="sidebar-brand-name"></p>
+                    <p class="sidebar-brand-tagline"></p>
+                </div>
             </div>
-        </div>
-        <div class="py-4 overflow-y-auto overflow-x-hidden flex-grow">
-            <ul class="">
-                <li class="pl-6 pr-4 py-2 text-[.7rem] h-9">
-                    <div class="nav_indicator_txt font-extrabold text-gray-300">MAIN</div>
-                    <div class="nav_indicator_icn hidden opacity-0 text-gray-300 text-[.5rem]">
-                        <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 8H12" stroke="white" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" />
-                            <path d="M16 8H18" stroke="#9ae600" stroke-width="2" stroke-linecap="round" />
-                            <path d="M6 13H8" stroke="#9ae600" stroke-width="2" stroke-linecap="round" />
-                            <path d="M12 13L23 13" stroke="white" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                </li>
-                <li class="pl-2 relative">
-                    <a href="./dashboard.html" class="w-full px-6 py-4 relative flex items-center nav_link transition-all duration-300 ease-in-out text-green-600 bg-green-50 rounded-l-3xl nav_active">
-                        <span class="nav_icon"><i class="bi bi-columns-gap"></i></span>
-                        <p class="nav_text whitespace-nowrap font-medium"><span class="ml-4">Dashboard</span></p>
+
+            <!-- Sidebar menu -->
+            <ul class="sidebar-menu">
+                <!-- Section -->
+                <li class="sidebar-section" data-section-heading="GENERAL"></li>
+
+                <!-- Links -->
+                <li>
+                    <a href="./dashboard.html" class="sidebar-link active">
+                        <i class="bi bi-columns-gap"></i>
+                        <span class="">Dashboard</span>
                     </a>
                 </li>
-                <li class="pl-2 relative">
-                    <a href="./daak-list.html" class="w-full px-6 py-4 relative flex items-center nav_link transition-all duration-300 ease-in-out text-gray-200 hover:text-white">
-                        <span class="nav_icon"><i class="bi bi-envelope"></i></span>
-                        <p class="nav_text whitespace-nowrap font-medium"><span class="ml-4">Daaks</span></p>
+                <li>
+                    <a href="./daak-list.html" class="sidebar-link">
+                        <i class="bi bi-envelope"></i>
+                        <span>Daaks</span>
                     </a>
                 </li>
-                <li class="pl-2 relative ">
-                    <!-- Navbar Dropdown —— action:dropdown_active -->
-                    <div class="nav_link nav_dropdown transition-all duration-300 ease-in-out text-gray-200 hover:text-white" data-id="settings">
-                        <div class="relative w-full px-6 py-4 flex items-center">
-                            <div class="absolute right-6 top-1/2 -translate-y-1/2 text-[.65rem]"><i class="bi bi-arrow-right block dropdown_indicator transition-all duration-300 ease-in-out"></i></div>
-                            <span class="nav_icon"><i class="bi bi-gear"></i></span>
-                            <p class="nav_text whitespace-nowrap font-medium"><span class="ml-4">Settings</span></p>
-                        </div>
-                        <ol class="max-h-0 overflow-hidden nav_dropdown_con transition-all duration-300 ease-in-out group-[.closing]:duration-200">
-                            <li class="pl-8">
-                                <a href="" class="w-full text-xs py-2 flex items-center transition-all duration-300 ease-in-out nav_link">
-                                    <span class="nav_icon"><i class="bi bi-dash"></i></span>
-                                    <p class="nav_text whitespace-nowrap font-medium"><span class="ml-4">System</span></p>
-                                </a>
-                            </li>
-                            <li class="pl-8">
-                                <a href="" class="w-full text-xs py-2 flex items-center transition-all duration-300 ease-in-out nav_link">
-                                    <span class="nav_icon"><i class="bi bi-dash"></i></span>
-                                    <p class="nav_text whitespace-nowrap font-medium"><span class="ml-4">Preferences</span></p>
-                                </a>
-                            </li>
-                        </ol>
+
+                <!-- Dropdown -->
+                <li class="sidebar-dropdown" id="settings">
+                    <div class="dropdown-toggle">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                        <span class="dropdown-arrow"></span>
                     </div>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-dash"></i>
+                                <span>System</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-dash"></i>
+                                <span>Preferences</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Dropdown -->
+                <li class="sidebar-dropdown" id="new">
+                    <div class="dropdown-toggle">
+                        <i class="bi bi-star"></i>
+                        <span>New</span>
+                        <span class="dropdown-arrow"></span>
+                    </div>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-dash"></i>
+                                <span>System</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link">
+                                <i class="bi bi-dash"></i>
+                                <span>Preferences</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-        </div>
-    </nav>
-    <section class="flex-grow flex flex-col relative lg:ml-[4.5rem] main_body transition-all duration-200 ease-linear lg:rounded-l-3xl bg-gray-50 overflow-x-hidden h-full">
-        <!-- Topbar -->
-        <header class="sticky top-0 z-10 border-b- border-gray-300 pb-0.5 bg-gray-50 shadow">
-            <div class="flex items-center gap-2 lg:gap-8 justify-between max-w-[82rem] mx-auto w-full py-4 px-4">
-                <div class="flex items-center gap-2 lg:gap-8 flex-grow">
-                    <button class="size-8 rounded-full border p-1 border-green-600 flex items-center justify-center top-24 left-56 2xl:left-64 z-50 transition-all duration-200 ease-in-out nav_toggler">
-                        <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-green-600">
-                            <path d="M25.1013 9.17398L6.89866 9.17398" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-                            <path d="M25.1013 16L6.89866 16" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-                            <path d="M25.1013 22.826L6.89866 22.826" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-                        </svg>
-                    </button>
-                    <img src="./assets/images/logo-g.png" class="max-w-[32px] transition-all duration-300 nav_logo lg:hidden" alt="logo">
-                    <div class="">
-                        <form>
-                            <label for="default-search" class="mb-2 text-xs sm:text-sm font-medium text-gray-900 sr-only">Search</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <i class="bi bi-search text-xs sm:text-sm text-gray-500"></i>
-                                </div>
-                                <input type="search" id="default-search" class="block w-full max-w-lg px-2 py-1.5 pl-10 text-xs sm:text-sm border border-gray-300 rounded-xl bg-gray-100 focus:ring-0 focus:border-gray-700" placeholder="Search..." required>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="flex items-center gap-8">
-                    <div class="flex items-center justify-end">
-                        <div class="flex items-center gap-1">
-                            <div class="flex gap-1">
-                                <button title="Notifications" class="rounded-full border border-gray-200 bg-gray-100 hover:bg-gray-700 h-8 w-8 flex items-center justify-center relative shadow-white">
-                                    <i class="bi bi-bell text-gray-500 text-xs"></i>
-                                    <span class="absolute -top-1 right-0 bg-red-500 rounded-full text-[0.5rem] text-white h-3 w-3 md:h-4 md:w-4 flex items-center justify-center">5</span>
-                                </button>
-                            </div>
-                            <div class="relative">
-                                <button class="flex items-center gap-1">
-                                    <div class="rounded-full bg-rose-200 hover:bg-rose-300 h-8 w-8 flex items-center justify-center relative shadow-white overflow-hidden">
-                                        <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile" class="rounded-full object-cover object-center h-8 w-8">
-                                    </div>
-                                </button>
-                                <input class="peer opacity-0 cursor-pointer absolute top-1/2 -translate-y-1/2 right-1 scale-125 size-6" type="checkbox" id="drop_check">
-                                <div class="absolute right-0 border border-gray-300 rounded-md shadow-lg bg-white divide-y divide-gray-300 mt-3 text-xs hidden peer-checked:block">
-                                    <div class="px-4 py-3 flex items-center gap-2">
-                                        <div class="rounded-full bg-rose-200 hover:bg-rose-300 h-8 w-8 flex items-center justify-center relative shadow-white overflow-hidden">
-                                            <img src="https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="profile" class="rounded-full object-cover object-center h-8 w-8">
-                                        </div>
-                                        <div class="">
-                                            <div class="font-medium">Alvin Marks</div>
-                                            <div class="truncate text-[.6rem]">alvin007@gmail.com</div>
-                                        </div>
-                                    </div>
-                                    <ul class="py-2">
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 flex items-center gap-2"><i class="bi bi-person"></i><span>My Profile</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 flex items-center gap-2"><i class="bi bi-gear"></i><span>Settings</span></a>
-                                        </li>
-                                    </ul>
-                                    <div class="py-2">
-                                        <a href="#" class="block px-4 py-2 flex items-center gap-2"><i class="bi bi-box-arrow-right"></i><span>Sign out</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Breadcrumb -->
-        <!-- <div class="border-b border-gray-200 py-2">
-            <div class="max-w-[82rem] mx-auto w-full px-4 flex gap-2 items-center text-xs">
-                <a class="text-gray-600 font-medium">Dashboard</a>
-            </div>
-        </div> -->
-        <!-- Main content -->
-        <main class="max-w-[82rem] mx-auto w-full flex-grow py-5">
-            <div class="px-4">
-                <p class="">Custom sidebar plugin</p>
-            </div>
-        </main>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./assets/js/sidenav.js"></script>
-    <script>
-    </script>
-</body>
+        </nav>
 
+        <!-- Main content -->
+        <div class="main-content">
+            <button class="sidebar-toggle">☰</button>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/sidenav.js"></script>
+        <script src="./js/edgepane.js"></script>
+        <script>
+            edgePane.init({
+                dropdownMode: "multi",
+                brand: {
+                    brandLogoSrc: "./assets/images/logo.png",
+                    brandName: "My Company",
+                    brandTagline: "Excellence in Every Step",
+                },
+            });
+        </script>
+    </body>
 </html>
