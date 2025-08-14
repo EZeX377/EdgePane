@@ -1,9 +1,14 @@
+/* Import Montserrat font from Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
 :root {
     --sidebar-bg: #059669;
     --sidebar-color: #fff;
     --sidebar-width-open: 16rem;
-    --sidebar-width-closed: 4.5rem;
+    --sidebar-width-closed: 4rem;
     --transition-speed: 0.25s;
+    --sidebar-font: "Montserrat", sans-serif;
+    --icon-size: auto; /* NEW: variable for icon size */
 }
 
 .sidebar {
@@ -18,6 +23,7 @@
     transition:
         width var(--transition-speed),
         left var(--transition-speed);
+    font-family: var(--sidebar-font);
 }
 
 /* Open and Close states */
@@ -33,7 +39,7 @@
 .sidebar-header {
     display: flex;
     align-items: center;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
 }
 .sidebar-logo {
     flex-shrink: 0;
@@ -49,33 +55,51 @@
         width var(--transition-speed),
         margin var(--transition-speed);
 }
+.sidebar-brand-name {
+    line-height: normal;
+}
 .sidebar-brand-tagline {
     font-size: 0.75rem;
     font-weight: lighter;
 }
-/* Hide text when sidebar is closed */
-.sidebar[data-state="closed"] .sidebar-title,
-.sidebar[data-state="closed"] .sidebar-link span,
-.sidebar[data-state="closed"] .dropdown-toggle span,
-.sidebar[data-state="closed"] .dropdown-content span,
+
+/* Icon wrapper - fixed width so icons don't shift */
+.sidebar-link-icon,
+.dropdown-toggle .sidebar-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--icon-size);
+    height: var(--icon-size);
+    flex-shrink: 0;
+}
+
+/* Hide only text and arrow, keep icons visible */
+.sidebar[data-state="closed"] .sidebar-link-text,
+.sidebar[data-state="closed"] .dropdown-toggle .sidebar-link-text,
 .sidebar[data-state="closed"] .dropdown-arrow {
     opacity: 0;
     width: 0;
-    margin: 0;
     overflow: hidden;
+    white-space: nowrap;
+    transition:
+        opacity var(--transition-speed),
+        width var(--transition-speed);
 }
+
 .dropdown-content .sidebar-link {
     padding: 0.65rem 1.5rem;
     font-size: 0.75rem;
 }
+
 /* Menu styles */
 .sidebar-menu {
     list-style: none;
-    padding: 0;
+    padding: 0.5rem;
     margin: 1rem 0;
 }
-.sidebar-section {
-    padding: 0.5rem 1.5rem;
+.sidebar-section-heading {
+    padding: 0.75rem;
     font-size: 0.75rem;
     opacity: 0.7;
 }
@@ -85,44 +109,18 @@
     display: flex;
     gap: 0.65rem;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: 0.75rem 1.05rem;
     text-decoration: none;
-    margin-left: 0.5rem;
-    border-radius: 5rem 0rem 0rem 5rem;
+    border-radius: 2rem;
     color: inherit;
     transition: background var(--transition-speed);
 }
 
 /* Active link styles */
 .sidebar-link.active {
-    position: relative;
-    background: rgba(255, 255, 255, 1); /* slightly brighter */
-    color: var(--sidebar-bg); /* force white text */
-    font-weight: 600; /* optional emphasis */
-}
-.sidebar-link.active::before {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: -1px;
-    right: -1px;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-bottom-right-radius: 1.5rem;
-    background: transparent;
-    box-shadow: 0.475rem 0.475rem #f7fee7;
-}
-.sidebar-link.active::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    margin-top: -1px;
-    right: -1px;
-    width: 1.5rem;
-    height: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    background: transparent;
-    box-shadow: 0.475rem -0.475rem #f7fee7;
+    background: rgba(255, 255, 255, 1);
+    color: var(--sidebar-bg);
+    font-weight: 600;
 }
 .sidebar-link:hover:not(.active) {
     background: rgba(255, 255, 255, 0.1);
@@ -130,32 +128,29 @@
 
 .sidebar-link i {
     flex-shrink: 0;
-    /*margin-right: 0.75rem;*/
 }
+
 /* Style when sidebar is open */
-.sidebar[data-state="open"] .sidebar-section::before {
+.sidebar[data-state="open"] .sidebar-section-heading::before {
     content: attr(data-section-heading);
     font-weight: bold;
-    color: #d1d5db; /* Tailwind text-gray-300 */
+    color: #d1d5db;
     font-size: 0.75rem;
 }
-.sidebar[data-state="open"] .sidebar-section::after {
+.sidebar[data-state="open"] .sidebar-section-heading::after {
     content: "";
 }
 
 /* Style when sidebar is closed */
-.sidebar[data-state="closed"] .sidebar-section {
-    position: relative;
+.sidebar[data-state="closed"] .sidebar-section-heading {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-.sidebar[data-state="open"] .sidebar-section::before {
+.sidebar[data-state="open"] .sidebar-section-heading::before {
     display: none;
 }
-
-.sidebar[data-state="closed"] .sidebar-section::before {
+.sidebar[data-state="closed"] .sidebar-section-heading::before {
     content: "";
     display: block;
     width: 24px;
@@ -165,17 +160,15 @@
     background-size: contain;
     opacity: 0.8;
 }
-
-.sidebar[data-state="closed"] .sidebar-section::after {
+.sidebar[data-state="closed"] .sidebar-section-heading::after {
     display: none;
 }
-
-.sidebar[data-state="open"] .sidebar-section::after {
+.sidebar[data-state="open"] .sidebar-section-heading::after {
     content: attr(data-section-heading);
     font-weight: 800;
     font-size: 0.75rem;
     line-height: 1.25rem;
-    color: #d1d5db; /* text-gray-300 */
+    color: #d1d5db;
     margin-left: 0.25rem;
 }
 
@@ -183,26 +176,29 @@
 .sidebar-dropdown .dropdown-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-speed);
+    transition: 0.1s;
 }
 .sidebar-dropdown.open .dropdown-content {
-    max-height: 300px;
+    max-height: 50rem;
 }
 .sidebar[data-state="closed"] .dropdown-content {
     max-height: 0;
 }
+
 .dropdown-toggle {
     display: flex;
     gap: 0.65rem;
     align-items: center;
     cursor: pointer;
-    margin-left: 0.5rem;
-    border-radius: 5rem 0rem 0rem 5rem;
-    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    padding: 0.75rem 1.05rem;
 }
-.dropdown-toggle i:first-child {
-    /*margin-right: 0.75rem;*/
+.dropdown-toggle .sidebar-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .dropdown-arrow {
     width: 10px;
     height: 10px;
@@ -219,13 +215,12 @@
     transform: rotate(90deg);
 }
 
-/* Hide dropdown text when sidebar is closed */
-.sidebar[data-state="closed"] .dropdown-toggle span,
-.sidebar[data-state="closed"] .dropdown-content span {
-    opacity: 0;
-    width: 0;
+/* Keep icons visible even when collapsed */
+.sidebar[data-state="closed"] .sidebar-link-icon,
+.sidebar[data-state="closed"] .dropdown-toggle .sidebar-link-icon {
+    opacity: 1;
+    width: auto;
     margin: 0;
-    overflow: hidden;
 }
 
 /* Overlay (mobile only) */
@@ -239,6 +234,7 @@
 
 /* Main content */
 .main-content {
+    flex-grow: 1;
     transition: margin-left var(--transition-speed);
 }
 .main-content.shifted {
@@ -262,9 +258,7 @@
     .sidebar-overlay.show {
         display: block;
     }
-    .sidebar-link.active::before {
-        display: none;
-    }
+    .sidebar-link.active::before,
     .sidebar-link.active::after {
         display: none;
     }

@@ -2,31 +2,21 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>ePatrika</title>
+        <title>EdgePane —— Pane Perfect Experience</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="./assets/images/logo-g.png" />
-
-        <!-- Load custom styles first -->
-        <link rel="stylesheet" href="./css/edgepane.css" />
+        <link rel="icon" type="image/png" href="./assets/images/logo-d.png" />
 
         <!-- Then load Tailwind so it can override defaults -->
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-        <!-- Fonts -->
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-            rel="stylesheet"
-        />
+        <!-- Load custom styles first -->
+        <link rel="stylesheet" href="./css/edgepane.css" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
         />
     </head>
-    <style>
-        * {
-            font-family: "Montserrat", serif;
-        }
-    </style>
+    <style></style>
 
     <body
         class="h-screen flex text-xs sm:text-sm relative overflow-hidden antialiased"
@@ -48,63 +38,64 @@
             <!-- Sidebar menu -->
             <ul class="sidebar-menu">
                 <!-- Section -->
-                <li class="sidebar-section" data-section-heading="GENERAL"></li>
+                <li
+                    class="sidebar-section-heading"
+                    data-section-heading="GENERAL"
+                ></li>
 
                 <!-- Links -->
                 <li>
-                    <a href="./dashboard.html" class="sidebar-link active">
-                        <i class="bi bi-columns-gap"></i>
-                        <span class="">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="./daak-list.html" class="sidebar-link">
-                        <i class="bi bi-envelope"></i>
-                        <span>Daaks</span>
+                    <a href="./dashboard.html" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-columns-gap"></i
+                        ></span>
+                        <span class="sidebar-link-text">Dashboard</span>
                     </a>
                 </li>
 
+                <li
+                    class="sidebar-section-heading"
+                    data-section-heading="SYSTEM"
+                ></li>
+                <!-- Dropdown -->
                 <!-- Dropdown -->
                 <li class="sidebar-dropdown" id="settings">
-                    <div class="dropdown-toggle">
-                        <i class="bi bi-gear"></i>
-                        <span>Settings</span>
+                    <div
+                        class="dropdown-toggle"
+                        role="button"
+                        aria-expanded="false"
+                    >
+                        <span class="sidebar-link-icon">
+                            <i class="bi bi-gear"></i>
+                        </span>
+                        <span class="sidebar-link-text" aria-hidden="false"
+                            >Settings</span
+                        >
                         <span class="dropdown-arrow"></span>
                     </div>
-                    <ul class="dropdown-content">
+                    <ul class="dropdown-content" aria-hidden="true">
                         <li>
-                            <a href="#" class="sidebar-link">
-                                <i class="bi bi-dash"></i>
-                                <span>System</span>
+                            <a href="#" class="sidebar-link active">
+                                <span class="sidebar-link-icon"
+                                    ><i class="bi bi-dash"></i
+                                ></span>
+                                <span
+                                    class="sidebar-link-text"
+                                    aria-hidden="false"
+                                    >System</span
+                                >
                             </a>
                         </li>
                         <li>
                             <a href="#" class="sidebar-link">
-                                <i class="bi bi-dash"></i>
-                                <span>Preferences</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Dropdown -->
-                <li class="sidebar-dropdown" id="new">
-                    <div class="dropdown-toggle">
-                        <i class="bi bi-star"></i>
-                        <span>New</span>
-                        <span class="dropdown-arrow"></span>
-                    </div>
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="#" class="sidebar-link">
-                                <i class="bi bi-dash"></i>
-                                <span>System</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="sidebar-link">
-                                <i class="bi bi-dash"></i>
-                                <span>Preferences</span>
+                                <span class="sidebar-link-icon"
+                                    ><i class="bi bi-dash"></i
+                                ></span>
+                                <span
+                                    class="sidebar-link-text"
+                                    aria-hidden="false"
+                                    >Preferences</span
+                                >
                             </a>
                         </li>
                     </ul>
@@ -114,19 +105,32 @@
 
         <!-- Main content -->
         <div class="main-content">
-            <button class="sidebar-toggle">☰</button>
+            <div class="max-w-4xl w-full mx-auto">
+                <button class="sidebar-toggle">☰</button>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="./assets/js/sidenav.js"></script>
         <script src="./js/edgepane.js"></script>
         <script>
             edgePane.init({
+                sidebarState: "closed",
+                hoverExpand: true,
+                closeOnClickOutside: true,
                 dropdownMode: "multi",
+                rememberDropdowns: true,
+                fontFamily: "'Montserrat', sans-serif",
+                sidebarWidth: "18rem",
                 brand: {
-                    brandLogoSrc: "./assets/images/logo.png",
-                    brandName: "My Company",
-                    brandTagline: "Excellence in Every Step",
+                    brandLogoSrc: "./assets/images/logo-w.png",
+                    brandName: "EdgePane",
+                    brandTagline: "Pane Perfect Experience",
+                },
+                onSidebarToggle: function (state) {
+                    console.log("Sidebar toggled:", state);
+                },
+                onDropdownToggle: function (id, isOpen) {
+                    console.log("Dropdown toggled:", id, "isOpen:", isOpen);
                 },
             });
         </script>
