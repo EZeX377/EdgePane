@@ -2,13 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 :root {
-    --sidebar-bg: #059669;
+    --sidebar-bg: rgba(5, 150, 105, 1);
+    --sidebar-bg-active: rgba(255, 255, 255, 0.7);
     --sidebar-color: #fff;
+    --sidebar-color-active: rgba(5, 150, 105, 1);
     --sidebar-width-open: 16rem;
-    --sidebar-width-closed: 4rem;
     --transition-speed: 0.25s;
     --sidebar-font: "Montserrat", sans-serif;
-    --icon-size: auto; /* NEW: variable for icon size */
+    --icon-size: auto;
 }
 
 .sidebar {
@@ -41,12 +42,15 @@
     align-items: center;
     padding: 0.75rem 1rem;
 }
+.sidebar[data-state="closed"] .sidebar-header {
+    justify-content: center;
+}
+
 .sidebar-logo {
     flex-shrink: 0;
 }
 .sidebar-title {
     font-size: 1rem;
-    margin-left: 0.5rem;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
@@ -54,6 +58,13 @@
         opacity var(--transition-speed),
         width var(--transition-speed),
         margin var(--transition-speed);
+}
+.sidebar[data-state="open"] .sidebar-title {
+    margin-left: 0.75rem;
+}
+.sidebar[data-state="closed"] .sidebar-title {
+    width: 0;
+    margin-left: 0;
 }
 .sidebar-brand-name {
     line-height: normal;
@@ -69,11 +80,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: var(--icon-size);
-    height: var(--icon-size);
     flex-shrink: 0;
 }
 
+.sidebar .sidebar-link-icon {
+    font-size: var(--icon-size);
+}
+.sidebar[data-state="open"] .sidebar-link-text,
+.sidebar[data-state="open"] .dropdown-toggle .sidebar-link-text {
+    margin-left: 0.75rem;
+}
 /* Hide only text and arrow, keep icons visible */
 .sidebar[data-state="closed"] .sidebar-link-text,
 .sidebar[data-state="closed"] .dropdown-toggle .sidebar-link-text,
@@ -94,7 +110,7 @@
 
 /* Menu styles */
 .sidebar-menu {
-    list-style: none;
+    /*list-style: none;*/
     padding: 0.5rem;
     margin: 1rem 0;
 }
@@ -107,19 +123,23 @@
 /* Links */
 .sidebar-link {
     display: flex;
-    gap: 0.65rem;
+    /*gap: 0.65rem;*/
     align-items: center;
     padding: 0.75rem 1.05rem;
     text-decoration: none;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     color: inherit;
     transition: background var(--transition-speed);
 }
 
+.sidebar[data-state="closed"] .sidebar-link,
+.sidebar[data-state="closed"] .dropdown-toggle {
+    justify-content: center;
+}
 /* Active link styles */
 .sidebar-link.active {
-    background: rgba(255, 255, 255, 1);
-    color: var(--sidebar-bg);
+    background: var(--sidebar-bg-active);
+    color: var(--sidebar-color-active);
     font-weight: 600;
 }
 .sidebar-link:hover:not(.active) {
@@ -168,26 +188,30 @@
     font-weight: 800;
     font-size: 0.75rem;
     line-height: 1.25rem;
-    color: #d1d5db;
+    color: var(--sidebar-color);
+    opacity: 0.5;
     margin-left: 0.25rem;
 }
 
 /* Dropdown styles */
 .sidebar-dropdown .dropdown-content {
     max-height: 0;
+    max-width: 0;
     overflow: hidden;
     transition: 0.1s;
 }
 .sidebar-dropdown.open .dropdown-content {
     max-height: 50rem;
+    max-width: 50rem;
 }
 .sidebar[data-state="closed"] .dropdown-content {
     max-height: 0;
+    max-width: 0rem;
 }
 
 .dropdown-toggle {
     display: flex;
-    gap: 0.65rem;
+    /*gap: 0.65rem;*/
     align-items: center;
     cursor: pointer;
     border-radius: 2rem;
@@ -202,12 +226,22 @@
 .dropdown-arrow {
     width: 10px;
     height: 10px;
-    margin-left: auto;
     flex-shrink: 0;
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='none' viewBox='0 0 10 10'><path d='M3 2L7 5L3 8' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M3 2L7 5L3 8' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
         no-repeat center;
-    background-size: contain;
-    transition: transform var(--transition-speed);
+    -webkit-mask-size: contain;
+
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M3 2L7 5L3 8' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>")
+        no-repeat center;
+    mask-size: contain;
+
+    background-color: var(--sidebar-color); /* drives arrow color */
+    transition: transform 0.1s;
+}
+
+.sidebar[data-state="open"] .dropdown-arrow {
+    margin-left: auto;
 }
 
 /* Rotate when open */

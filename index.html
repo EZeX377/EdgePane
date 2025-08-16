@@ -45,7 +45,7 @@
 
                 <!-- Links -->
                 <li>
-                    <a href="./dashboard.html" class="sidebar-link">
+                    <a href="" class="sidebar-link">
                         <span class="sidebar-link-icon"
                             ><i class="bi bi-columns-gap"></i
                         ></span>
@@ -58,42 +58,59 @@
                     data-section-heading="SYSTEM"
                 ></li>
                 <!-- Dropdown -->
-                <!-- Dropdown -->
                 <li class="sidebar-dropdown" id="settings">
-                    <div
-                        class="dropdown-toggle"
-                        role="button"
-                        aria-expanded="false"
-                    >
-                        <span class="sidebar-link-icon">
-                            <i class="bi bi-gear"></i>
-                        </span>
-                        <span class="sidebar-link-text" aria-hidden="false"
-                            >Settings</span
-                        >
+                    <div class="dropdown-toggle">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-gear"></i
+                        ></span>
+                        <span class="sidebar-link-text">Settings</span>
                         <span class="dropdown-arrow"></span>
                     </div>
-                    <ul class="dropdown-content" aria-hidden="true">
+                    <ul class="dropdown-content">
                         <li>
-                            <a href="#" class="sidebar-link active">
+                            <a href="" class="sidebar-link">
                                 <span class="sidebar-link-icon"
                                     ><i class="bi bi-dash"></i
                                 ></span>
-                                <span
-                                    class="sidebar-link-text"
-                                    aria-hidden="false"
-                                    >System</span
-                                >
+                                <span class="sidebar-link-text">System</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="sidebar-link">
+                            <a href="" class="sidebar-link">
                                 <span class="sidebar-link-icon"
                                     ><i class="bi bi-dash"></i
                                 ></span>
-                                <span
-                                    class="sidebar-link-text"
-                                    aria-hidden="false"
+                                <span class="sidebar-link-text"
+                                    >Preferences</span
+                                >
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-dropdown" id="new">
+                    <div class="dropdown-toggle">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-gear"></i
+                        ></span>
+                        <span class="sidebar-link-text">Settings</span>
+                        <span class="dropdown-arrow"></span>
+                    </div>
+                    <ul class="dropdown-content">
+                        <li>
+                            <a href="" class="sidebar-link">
+                                <span class="sidebar-link-icon"
+                                    ><i class="bi bi-dash"></i
+                                ></span>
+                                <span class="sidebar-link-text">System</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="sidebar-link">
+                                <span class="sidebar-link-icon"
+                                    ><i class="bi bi-dash"></i
+                                ></span>
+                                <span class="sidebar-link-text"
                                     >Preferences</span
                                 >
                             </a>
@@ -117,14 +134,22 @@
                 sidebarState: "closed",
                 hoverExpand: true,
                 closeOnClickOutside: true,
-                dropdownMode: "multi",
+                dropdownMode: "single",
                 rememberDropdowns: true,
                 fontFamily: "'Montserrat', sans-serif",
                 sidebarWidth: "18rem",
+                sidebarColor: "#1f2937",
+                textColor: "#e5e7eb",
+                activeLinkBg: "rgba(255,255,255,0.15)",
+                activeLinkColor: "#e5e7eb",
+                iconSize: "auto",
+                showBrand: true,
                 brand: {
                     brandLogoSrc: "./assets/images/logo-w.png",
                     brandName: "EdgePane",
                     brandTagline: "Pane Perfect Experience",
+                    logoWidth: "2rem",
+                    logoHeight: "2rem",
                 },
                 onSidebarToggle: function (state) {
                     console.log("Sidebar toggled:", state);
