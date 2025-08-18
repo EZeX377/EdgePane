@@ -1,12 +1,282 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>EdgePane —— Pane Perfect Experience</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EdgePane Documentation</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f7fa;
+        color: #333;
+    }
+    header {
+        background: #059669;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2.2rem;
+    }
+    header p {
+        margin: 0.5rem 0 0;
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+    main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    h2 {
+        color: #059669;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.3rem;
+        margin-top: 2rem;
+    }
+    h3 {
+        color: #0f5132;
+        margin-top: 1.5rem;
+    }
+    pre {
+        background: #f0f0f0;
+        padding: 1rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin: 1rem 0;
+    }
+    code {
+        font-family: monospace;
+        color: #d6336c;
+    }
+    ul {
+        padding-left: 1.2rem;
+    }
+    ul li {
+        margin-bottom: 0.5rem;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 0.6rem 1rem;
+        text-align: left;
+    }
+    th {
+        background: #f0f0f0;
+    }
+    section {
+        margin-bottom: 2rem;
+    }
+    .badge {
+        display: inline-block;
+        background: #059669;
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 0.3rem;
+        font-size: 0.85rem;
+        vertical-align: middle;
+    }
+    a {
+        color: #059669;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .sidebar-toggle {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #059669;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 0.8rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        z-index: 1000;
+    }
+</style>
 </head>
 <body>
-<h1>EdgePane —— Pane Perfect Experience</h1>
-<a href="./example/demo.html">View Demo</a>
+
+<header>
+    <h1>EdgePane</h1>
+    <p>Professional Sidebar Documentation — Responsive, Collapsible, Customizable</p>
+</header>
+
+<main>
+
+<section>
+    <h2>Introduction</h2>
+    <p><strong>EdgePane</strong> is a modern, responsive sidebar for web apps and dashboards. It supports sections, dropdowns, icons, collapsible functionality, and a toggle button for mobile devices.</p>
+    <p><span class="badge"><i class="bi bi-check-circle"></i> Requirements</span></p>
+    <ul>
+        <li>jQuery (v3+)</li>
+    </ul>
+    <p>EdgePane uses custom CSS and works with any CSS framework. You can use any icon library; the demo uses <strong>Bootstrap Icons</strong>.</p>
+</section>
+
+<section>
+    <h2>Getting Started</h2>
+
+    <h3>1. Include Dependencies</h3>
+    <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"&gt;</code></pre>
+
+    <h3>2. Add Sidebar Layout</h3>
+    <p>Include the sidebar HTML and the toggle button:</p>
+    <pre><code>&lt;button class="sidebar-toggle"&gt;&lt;i class="bi bi-list"&gt;&lt;/i&gt;&lt;/button&gt;
+
+&lt;nav class="sidebar"&gt;
+  &lt;div class="sidebar-header"&gt;
+    &lt;img src="" class="sidebar-logo" alt="Logo"&gt;
+    &lt;div class="sidebar-title"&gt;
+      &lt;p class="sidebar-brand-name"&gt;&lt;/p&gt;
+      &lt;p class="sidebar-brand-tagline"&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;ul class="sidebar-menu"&gt;
+    &lt;li class="sidebar-section-heading" data-section-heading="GENERAL"&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="sidebar-link"&gt;
+      &lt;span class="sidebar-link-icon"&gt;&lt;i class="bi bi-columns-gap"&gt;&lt;/i&gt;&lt;/span&gt;
+      &lt;span class="sidebar-link-text"&gt;Dashboard&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+    <h3>3. Initialize EdgePane</h3>
+    <p>Example initialization with full options:</p>
+    <pre><code>edgePane.init({
+    sidebarState: "open",
+    hoverExpand: true,
+    closeOnClickOutside: true,
+    dropdownMode: "single",
+    rememberDropdowns: true,
+    fontFamily: "'Montserrat', sans-serif",
+    sidebarWidth: "18rem",
+    sidebarColor: "rgba(225,225,225,1)",
+    textColor: "rgba(70,70,70,1)",
+    activeLinkBg: "rgba(180,180,180,1)",
+    activeLinkColor: "rgba(70,70,70,1)",
+    showBrand: true,
+    brand: {
+        brandLogoSrc: "./assets/images/logo-d.png",
+        brandName: "EdgePane",
+        brandTagline: "Pane Perfect Experience",
+    },
+});</code></pre>
+</section>
+
+<section>
+    <h2>Features</h2>
+    <ul>
+        <li><strong>Toggle Button:</strong> Allows opening/closing the sidebar on small screens.</li>
+        <li><strong>Collapsible Sidebar:</strong> Users can toggle sidebar open/closed.</li>
+        <li><strong>Dropdown Menus:</strong> Nested links with optional single/multi open behavior.</li>
+        <li><strong>Sections:</strong> Automatically labeled using <code>data-section-heading</code>.</li>
+        <li><strong>Icons:</strong> Any icon library can be used for menu icons.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Customization</h2>
+
+    <h3>HTML Customization</h3>
+    <table>
+        <thead>
+            <tr><th>Option</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>.sidebar-logo</td><td>Sidebar brand/logo image.</td></tr>
+            <tr><td>.sidebar-brand-name</td><td>Brand name text.</td></tr>
+            <tr><td>.sidebar-brand-tagline</td><td>Optional tagline below the brand name.</td></tr>
+            <tr><td>.sidebar-link-icon</td><td>Menu item icon (any library).</td></tr>
+            <tr><td>.sidebar-link-text</td><td>Text for menu links.</td></tr>
+            <tr><td>.sidebar-dropdown</td><td>Wrap submenu items for collapsible dropdowns.</td></tr>
+            <tr><td>data-section-heading</td><td>Automatically label sections in the sidebar.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Initialization Customization</h3>
+    <table>
+        <thead>
+            <tr><th>Option</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>sidebarState</td><td>Initial state: "open" or "closed".</td></tr>
+            <tr><td>hoverExpand</td><td>Expand sidebar on hover when collapsed.</td></tr>
+            <tr><td>closeOnClickOutside</td><td>Closes the sidebar if user clicks outside.</td></tr>
+            <tr><td>dropdownMode</td><td>"single" (only one dropdown open) or "multi".</td></tr>
+            <tr><td>rememberDropdowns</td><td>Keep dropdowns open after page reload.</td></tr>
+            <tr><td>fontFamily</td><td>Custom font family for sidebar text.</td></tr>
+            <tr><td>sidebarWidth</td><td>Width of expanded sidebar.</td></tr>
+            <tr><td>sidebarColor</td><td>Background color of sidebar.</td></tr>
+            <tr><td>textColor</td><td>Color of menu text.</td></tr>
+            <tr><td>activeLinkBg</td><td>Background color of active link.</td></tr>
+            <tr><td>activeLinkColor</td><td>Text color of active link.</td></tr>
+            <tr><td>showBrand</td><td>Toggle brand visibility.</td></tr>
+            <tr><td>brand</td><td>Object containing <code>brandLogoSrc</code>, <code>brandName</code>, <code>brandTagline</code>.</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Example Usage</h2>
+    <pre><code>&lt;button class="sidebar-toggle"&gt;&lt;i class="bi bi-list"&gt;&lt;/i&gt;&lt;/button&gt;
+
+&lt;nav class="sidebar"&gt;&lt;/nav&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+    edgePane.init({
+        sidebarState: "open",
+        hoverExpand: true,
+        closeOnClickOutside: true,
+        dropdownMode: "single",
+        rememberDropdowns: true,
+        fontFamily: "'Montserrat', sans-serif",
+        sidebarWidth: "18rem",
+        sidebarColor: "rgba(225,225,225,1)",
+        textColor: "rgba(70,70,70,1)",
+        activeLinkBg: "rgba(180,180,180,1)",
+        activeLinkColor: "rgba(70,70,70,1)",
+        showBrand: true,
+        brand: {
+            brandLogoSrc: "./assets/images/logo-d.png",
+            brandName: "EdgePane",
+            brandTagline: "Pane Perfect Experience",
+        },
+    });
+});
+&lt;/script&gt;</code></pre>
+</section>
+
+<section>
+    <h2>Tips for Users</h2>
+    <ul>
+        <li>Include <strong>jQuery</strong> before initialization.</li>
+        <li>Toggle button allows easy sidebar access on small screens.</li>
+        <li>DropdownMode "single" or "multi" controls menu behavior.</li>
+        <li>Customize appearance with <code>sidebarColor</code>, <code>textColor</code>, <code>fontFamily</code>, etc.</li>
+        <li>Brand can be shown or hidden using <code>showBrand</code>.</li>
+    </ul>
+</section>
+
+</main>
+
 </body>
 </html>
