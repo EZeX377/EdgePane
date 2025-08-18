@@ -1,4 +1,17 @@
-(function ($) {
+(function (root, factory) {
+    if (typeof define === "function" && define.amd) {
+        // AMD
+        define(["jquery"], factory);
+    } else if (typeof exports === "object" && typeof module === "object") {
+        // CommonJS / Node
+        module.exports = factory(require("jquery"));
+    } else {
+        // Browser global
+        root.edgePane = factory(root.jQuery);
+    }
+})(this, function ($) {
+    "use strict";
+
     const edgePane = {
         config: {
             dropdownMode: "multi", // "multi" or "single"
@@ -12,14 +25,11 @@
             textColor: "#fff",
             activeLinkBg: "rgba(255,255,255,0.7)",
             activeLinkColor: "rgba(5,150,105,1)",
-            iconSize: "auto",
             showBrand: true,
             brand: {
                 brandLogoSrc: "",
                 brandName: "",
                 brandTagline: "",
-                logoWidth: "2rem",
-                logoHeight: "2rem",
             },
             onSidebarToggle: function (state) {},
             onDropdownToggle: function (id, isOpen) {},
@@ -43,30 +53,41 @@
 
             let isHoverOpen = false;
 
-            // --- Active link restore ---
-            $(".sidebar-link").removeClass("active");
-            const savedActiveIndex = localStorage.getItem(ACTIVE_LINK_KEY);
-            if (savedActiveIndex !== null) {
-                $(".sidebar-link").eq(savedActiveIndex).addClass("active");
-            }
-
             // --- Active link save on click ---
             $(document).on("click", ".sidebar-link", function () {
-                const activeLink = $(".sidebar-link").index(this);
+                const text = $(this).find(".sidebar-link-text").text().trim();
+                localStorage.setItem(ACTIVE_LINK_KEY, text);
+
                 $(".sidebar-link").removeClass("active");
                 $(this).addClass("active");
-                localStorage.setItem(ACTIVE_LINK_KEY, activeLink);
             });
+
+            // --- Active link restore ---
+            (function restoreActiveLink() {
+                const saved = localStorage.getItem(ACTIVE_LINK_KEY);
+
+                const $match = $(".sidebar-link").filter(function () {
+                    return (
+                        $(this).find(".sidebar-link-text").text().trim() ===
+                        saved
+                    );
+                });
+
+                $(".sidebar-link").removeClass("active");
+
+                ($match.length ? $match : $(".sidebar-link").first()).addClass(
+                    "active",
+                );
+            })();
 
             // Apply dynamic open width
             $(":root").css("--sidebar-width-open", this.config.sidebarWidth);
 
-            // Apply new configurable CSS variables
+            // Apply configurable CSS variables
             $(":root").css({
                 "--sidebar-color": this.config.textColor,
                 "--sidebar-bg-active": this.config.activeLinkBg,
                 "--sidebar-color-active": this.config.activeLinkColor,
-                "--icon-size": this.config.iconSize,
             });
 
             // --- Show/hide brand section ---
@@ -86,51 +107,11 @@
                     this.config.brand.brandTagline,
                 );
 
-            // --- Set logo size ---
-            $logo.css({
-                width: this.config.brand.logoWidth,
-                height: this.config.brand.logoHeight,
-            });
-
             // --- Apply colors and font ---
             $sidebar.css({
                 background: this.config.sidebarColor,
                 fontFamily: this.config.fontFamily,
             });
-
-            // --- Calculate and apply closed width ---
-            function calculateClosedWidth() {
-                const $header = $sidebar.find(".sidebar-header");
-                const $menu = $sidebar.find(".sidebar-menu");
-
-                // Temporarily force closed state to measure
-                const prevState = $sidebar.attr("data-state");
-                $sidebar.attr("data-state", "closed");
-
-                let maxWidth = 0;
-                if ($header.is(":visible")) {
-                    maxWidth = Math.max(maxWidth, $header.outerWidth(true));
-                }
-                if ($menu.length) {
-                    maxWidth = Math.max(maxWidth, $menu.outerWidth(true));
-                }
-
-                // Restore previous state
-                $sidebar.attr("data-state", prevState);
-
-                // Small padding
-                const padding = 1;
-                return maxWidth + padding;
-            }
-
-            function applyClosedWidth() {
-                const closedWidth = calculateClosedWidth();
-                $(":root").css("--sidebar-width-closed", closedWidth + "px");
-            }
-
-            // Apply on init + resize
-            applyClosedWidth();
-            $(window).on("resize", applyClosedWidth);
 
             // --- Load saved sidebar state ---
             let savedState = this.config.sidebarState;
@@ -140,7 +121,7 @@
                     this.config.sidebarState;
             }
 
-            // ✅ Force closed on small screens
+            // Force closed on small screens
             if ($(window).width() <= 1023) {
                 savedState = "closed";
             }
@@ -273,5 +254,5 @@
         },
     };
 
-    window.edgePane = edgePane;
-})(jQuery);
+    return edgePane;
+});

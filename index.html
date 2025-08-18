@@ -25,7 +25,7 @@
         <div class="sidebar-overlay"></div>
 
         <!-- Sidebar -->
-        <nav class="sidebar bg-neutral-800" data-state="closed">
+        <nav class="sidebar bg-neutral-800" role="navigation">
             <!-- Sidebar header -->
             <div class="sidebar-header">
                 <img src="" alt="Logo" class="sidebar-logo" />
@@ -37,13 +37,11 @@
 
             <!-- Sidebar menu -->
             <ul class="sidebar-menu">
-                <!-- Section -->
+                <!-- Section: GENERAL -->
                 <li
                     class="sidebar-section-heading"
                     data-section-heading="GENERAL"
                 ></li>
-
-                <!-- Links -->
                 <li>
                     <a href="" class="sidebar-link">
                         <span class="sidebar-link-icon"
@@ -52,14 +50,59 @@
                         <span class="sidebar-link-text">Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-person"></i
+                        ></span>
+                        <span class="sidebar-link-text">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-bell"></i
+                        ></span>
+                        <span class="sidebar-link-text">Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-chat"></i
+                        ></span>
+                        <span class="sidebar-link-text">Messages</span>
+                    </a>
+                </li>
 
+                <!-- Section: SYSTEM -->
                 <li
                     class="sidebar-section-heading"
                     data-section-heading="SYSTEM"
                 ></li>
-                <!-- Dropdown -->
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-hdd"></i
+                        ></span>
+                        <span class="sidebar-link-text">Storage</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-wifi"></i
+                        ></span>
+                        <span class="sidebar-link-text">Network</span>
+                    </a>
+                </li>
                 <li class="sidebar-dropdown" id="settings">
-                    <div class="dropdown-toggle">
+                    <div
+                        class="dropdown-toggle"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                    >
                         <span class="sidebar-link-icon"
                             ><i class="bi bi-gear"></i
                         ></span>
@@ -68,54 +111,87 @@
                     </div>
                     <ul class="dropdown-content">
                         <li>
-                            <a href="" class="sidebar-link">
-                                <span class="sidebar-link-icon"
-                                    ><i class="bi bi-dash"></i
-                                ></span>
-                                <span class="sidebar-link-text">System</span>
-                            </a>
+                            <a href="" class="sidebar-link"
+                                ><span class="sidebar-link-text"
+                                    >Account</span
+                                ></a
+                            >
                         </li>
                         <li>
-                            <a href="" class="sidebar-link">
-                                <span class="sidebar-link-icon"
-                                    ><i class="bi bi-dash"></i
-                                ></span>
-                                <span class="sidebar-link-text"
+                            <a href="" class="sidebar-link"
+                                ><span class="sidebar-link-text"
+                                    >System</span
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="" class="sidebar-link"
+                                ><span class="sidebar-link-text"
                                     >Preferences</span
-                                >
-                            </a>
+                                ></a
+                            >
                         </li>
                     </ul>
                 </li>
 
-                <li class="sidebar-dropdown" id="new">
-                    <div class="dropdown-toggle">
+                <!-- Section: REPORTS -->
+                <li
+                    class="sidebar-section-heading"
+                    data-section-heading="REPORTS"
+                ></li>
+                <li>
+                    <a href="" class="sidebar-link">
                         <span class="sidebar-link-icon"
-                            ><i class="bi bi-gear"></i
+                            ><i class="bi bi-bar-chart"></i
                         ></span>
-                        <span class="sidebar-link-text">Settings</span>
-                        <span class="dropdown-arrow"></span>
-                    </div>
-                    <ul class="dropdown-content">
-                        <li>
-                            <a href="" class="sidebar-link">
-                                <span class="sidebar-link-icon"
-                                    ><i class="bi bi-dash"></i
-                                ></span>
-                                <span class="sidebar-link-text">System</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="sidebar-link">
-                                <span class="sidebar-link-icon"
-                                    ><i class="bi bi-dash"></i
-                                ></span>
-                                <span class="sidebar-link-text"
-                                    >Preferences</span
-                                >
-                            </a>
-                        </li>
-                    </ul>
+                        <span class="sidebar-link-text">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-clipboard-data"></i
+                        ></span>
+                        <span class="sidebar-link-text">Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-graph-up"></i
+                        ></span>
+                        <span class="sidebar-link-text">Trends</span>
+                    </a>
+                </li>
+
+                <!-- Section: TOOLS -->
+                <li
+                    class="sidebar-section-heading"
+                    data-section-heading="TOOLS"
+                ></li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-folder"></i
+                        ></span>
+                        <span class="sidebar-link-text">File Manager</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-terminal"></i
+                        ></span>
+                        <span class="sidebar-link-text">Console</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="sidebar-link">
+                        <span class="sidebar-link-icon"
+                            ><i class="bi bi-bug"></i
+                        ></span>
+                        <span class="sidebar-link-text">Debug</span>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -131,31 +207,22 @@
         <script src="./js/edgepane.js"></script>
         <script>
             edgePane.init({
-                sidebarState: "closed",
+                sidebarState: "open",
                 hoverExpand: true,
                 closeOnClickOutside: true,
                 dropdownMode: "single",
                 rememberDropdowns: true,
                 fontFamily: "'Montserrat', sans-serif",
                 sidebarWidth: "18rem",
-                sidebarColor: "#1f2937",
-                textColor: "#e5e7eb",
-                activeLinkBg: "rgba(255,255,255,0.15)",
-                activeLinkColor: "#e5e7eb",
-                iconSize: "auto",
+                sidebarColor: "rgba(225,225,225,1)",
+                textColor: "rgba(70,70,70,1)",
+                activeLinkBg: "rgba(180,180,180,1)",
+                activeLinkColor: "rgba(70,70,70,1)",
                 showBrand: true,
                 brand: {
-                    brandLogoSrc: "./assets/images/logo-w.png",
+                    brandLogoSrc: "./assets/images/logo-d.png",
                     brandName: "EdgePane",
                     brandTagline: "Pane Perfect Experience",
-                    logoWidth: "2rem",
-                    logoHeight: "2rem",
-                },
-                onSidebarToggle: function (state) {
-                    console.log("Sidebar toggled:", state);
-                },
-                onDropdownToggle: function (id, isOpen) {
-                    console.log("Dropdown toggled:", id, "isOpen:", isOpen);
                 },
             });
         </script>
