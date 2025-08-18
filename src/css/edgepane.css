@@ -176,7 +176,6 @@
 .sidebar[data-state="closed"] .sidebar-section-heading {
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .sidebar[data-state="open"] .sidebar-section-heading::before {
     display: none;
