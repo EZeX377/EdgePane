@@ -1,4 +1,34 @@
+/*!
+ * EdgePane Sidebar
+ * ------------------------------------
+ * A lightweight, responsive, customizable sidebar
+ * with dropdowns, branding, overlay, and theming.
+ *
+ * Version: 1.0.0
+ * Author: Ronny Das
+ * License: MIT
+ *
+ * Features:
+ * - Collapsible sidebar with open/closed states
+ * - Dropdown menus with animation
+ * - Section headings (open/closed styles)
+ * - Responsive behavior (mobile overlay support)
+ * - Theming via CSS variables
+ * - Small footprint, framework-agnostic
+ *
+ * Usage:
+ *  <nav class="egp-sidebar" data-state="open|closed"></nav>
+ *
+ * Dependencies:
+ *  - jQuery (for edgepane.js init logic)
+ *
+ * ------------------------------------
+ * NOTE: This is the MINIFIED build.
+ * For readable SCSS/CSS, check /src/edgepane.css
+ */
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
 :root {
     --sidebar-bg: rgba(5, 150, 105, 1);
     --sidebar-bg-active: rgba(255, 255, 255, 0.7);
@@ -10,7 +40,7 @@
     --sidebar-font: "Montserrat", sans-serif;
     --icon-size: 0.88rem;
 }
-.sidebar {
+.egp-sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,31 +56,30 @@
         left var(--transition-speed);
     font-family: var(--sidebar-font);
 }
-.sidebar[data-state="open"] {
+.egp-sidebar[data-state="open"] {
     width: var(--sidebar-width-open);
 }
-.sidebar[data-state="closed"] {
+.egp-sidebar[data-state="closed"] {
     width: var(--sidebar-width-closed);
 }
-.sidebar-header {
+.egp-sidebar-header {
     display: flex;
     align-items: center;
     padding: 0.75rem 1rem;
-    margin-bottom: 1rem;
     transition: justify-content var(--transition-speed);
 }
-.sidebar[data-state="closed"] .sidebar-header {
+.egp-sidebar[data-state="closed"] .egp-sidebar-header {
 }
-.sidebar-dropdown .dropdown-content {
+.egp-sidebar-dropdown .egp-dropdown-content {
     position: relative;
     margin-left: 1.25rem;
     padding-left: 0.5rem;
 }
-.sidebar-dropdown .dropdown-content li {
+.egp-sidebar-dropdown .egp-dropdown-content li {
     position: relative;
     padding-left: 0.75rem;
 }
-.sidebar-dropdown .dropdown-content li::before {
+.egp-sidebar-dropdown .egp-dropdown-content li::before {
     content: "";
     position: absolute;
     top: -1.3rem;
@@ -62,14 +91,14 @@
     border-radius: 0 0 0 8px;
     opacity: 0.5;
 }
-.sidebar-logo {
+.egp-sidebar-logo {
     width: 2rem;
     height: 2rem;
     object-fit: cover;
     object-position: center;
     flex-shrink: 0;
 }
-.sidebar-title {
+.egp-sidebar-title {
     font-size: 1rem;
     font-weight: bold;
     white-space: nowrap;
@@ -79,38 +108,38 @@
         width var(--transition-speed),
         margin var(--transition-speed);
 }
-.sidebar[data-state="open"] .sidebar-title {
+.egp-sidebar[data-state="open"] .egp-sidebar-title {
     margin-left: 0.75rem;
     opacity: 1;
     width: auto;
 }
-.sidebar[data-state="closed"] .sidebar-title {
+.egp-sidebar[data-state="closed"] .egp-sidebar-title {
     margin-left: 0;
     width: 0;
     opacity: 0;
 }
-.sidebar-brand-name {
+.egp-sidebar-brand-name {
     line-height: normal;
 }
-.sidebar-brand-tagline {
+.egp-sidebar-brand-tagline {
     font-size: 0.75rem;
     font-weight: lighter;
 }
-.sidebar-link-icon,
-.dropdown-toggle .sidebar-link-icon {
+.egp-sidebar-link-icon,
+.egp-dropdown-toggle .egp-sidebar-link-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-size: var(--icon-size);
 }
-.sidebar[data-state="open"] .sidebar-link-text,
-.sidebar[data-state="open"] .dropdown-toggle .sidebar-link-text {
+.egp-sidebar[data-state="open"] .egp-sidebar-link-text,
+.egp-sidebar[data-state="open"] .egp-dropdown-toggle .egp-sidebar-link-text {
     margin-left: 0.75rem;
 }
-.sidebar[data-state="closed"] .sidebar-link-text,
-.sidebar[data-state="closed"] .dropdown-toggle .sidebar-link-text,
-.sidebar[data-state="closed"] .dropdown-arrow {
+.egp-sidebar[data-state="closed"] .egp-sidebar-link-text,
+.egp-sidebar[data-state="closed"] .egp-dropdown-toggle .egp-sidebar-link-text,
+.egp-sidebar[data-state="closed"] .egp-dropdown-arrow {
     opacity: 0;
     width: 0;
     margin: 0;
@@ -120,32 +149,32 @@
         width var(--transition-speed),
         margin var(--transition-speed);
 }
-.sidebar-menu {
+.egp-sidebar-menu {
     padding: 0.5rem;
     overflow-y: auto;
     overflow-x: hidden;
     flex-grow: 1;
 }
-.sidebar-menu::-webkit-scrollbar {
+.egp-sidebar-menu::-webkit-scrollbar {
     width: 4px;
 }
-.sidebar-menu::-webkit-scrollbar-track {
+.egp-sidebar-menu::-webkit-scrollbar-track {
     background: transparent;
 }
-.sidebar-menu::-webkit-scrollbar-thumb {
+.egp-sidebar-menu::-webkit-scrollbar-thumb {
     background-color: var(--sidebar-color);
     border-radius: 2px;
     transition: background-color 0.2s ease;
 }
-.sidebar-menu::-webkit-scrollbar-thumb:hover {
+.egp-sidebar-menu::-webkit-scrollbar-thumb:hover {
     background-color: var(--sidebar-color);
 }
-.sidebar-section-heading {
+.egp-sidebar-section-heading {
     padding: 0.75rem;
     font-size: 0.75rem;
     opacity: 0.7;
 }
-.sidebar-link {
+.egp-sidebar-link {
     display: flex;
     align-items: center;
     padding: 0.75rem 1.05rem;
@@ -156,32 +185,32 @@
         background var(--transition-speed),
         color var(--transition-speed);
 }
-.sidebar[data-state="closed"] .sidebar-link,
-.sidebar[data-state="closed"] .dropdown-toggle {
+.egp-sidebar[data-state="closed"] .egp-sidebar-link,
+.egp-sidebar[data-state="closed"] .egp-dropdown-toggle {
 }
-.sidebar-link.active {
+.egp-sidebar-link.active {
     background: var(--sidebar-bg-active);
     color: var(--sidebar-color-active);
     font-weight: 600;
 }
-.sidebar-link:hover:not(.active) {
+.egp-sidebar-link:hover:not(.active) {
     background: rgba(255, 255, 255, 0.1);
 }
-.sidebar[data-state="open"] .sidebar-section-heading::before {
+.egp-sidebar[data-state="open"] .egp-sidebar-section-heading::before {
     content: attr(data-section-heading);
     font-weight: bold;
     color: #d1d5db;
     font-size: 0.75rem;
 }
-.sidebar[data-state="closed"] .sidebar-section-heading {
+.egp-sidebar[data-state="closed"] .egp-sidebar-section-heading {
     display: flex;
     align-items: center;
 }
-.sidebar[data-state="open"] .sidebar-section-heading::before {
+.egp-sidebar[data-state="open"] .egp-sidebar-section-heading::before {
     display: none;
 }
 
-.sidebar[data-state="closed"] .sidebar-section-heading::before {
+.egp-sidebar[data-state="closed"] .egp-sidebar-section-heading::before {
     content: "";
     display: block;
     width: 24px;
@@ -200,7 +229,7 @@
     opacity: 0.3;
 }
 
-.sidebar[data-state="open"] .sidebar-section-heading::after {
+.egp-sidebar[data-state="open"] .egp-sidebar-section-heading::after {
     content: attr(data-section-heading);
     font-weight: 800;
     font-size: 0.75rem;
@@ -209,37 +238,37 @@
     opacity: 0.5;
     margin-left: 0.25rem;
 }
-.sidebar[data-state="closed"] .sidebar-section-heading::after {
+.egp-sidebar[data-state="closed"] .egp-sidebar-section-heading::after {
     display: none;
 }
-.sidebar-dropdown .dropdown-content {
+.egp-sidebar-dropdown .egp-dropdown-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease;
 }
-.sidebar-dropdown.open .dropdown-content {
+.egp-sidebar-dropdown.open .egp-dropdown-content {
     max-height: 50rem;
 }
-.sidebar[data-state="closed"] .dropdown-content {
+.egp-sidebar[data-state="closed"] .egp-dropdown-content {
     max-height: 0;
     transition: var(--transition-speed);
 }
-.dropdown-toggle {
+.egp-dropdown-toggle {
     display: flex;
     align-items: center;
     cursor: pointer;
     border-radius: 0.5rem;
     padding: 0.75rem 1.05rem;
 }
-.dropdown-arrow {
+.egp-dropdown-arrow {
     position: relative;
     width: 12px;
     height: 12px;
     margin-left: auto;
     color: var(--sidebar-color);
 }
-.dropdown-arrow::before,
-.dropdown-arrow::after {
+.egp-dropdown-arrow::before,
+.egp-dropdown-arrow::after {
     content: "";
     position: absolute;
     top: 50%;
@@ -253,55 +282,55 @@
         transform var(--transition-speed) ease,
         opacity var(--transition-speed) ease;
 }
-.dropdown-arrow::before {
+.egp-dropdown-arrow::before {
     transform: translate(-50%, -50%) rotate(0deg);
 }
-.dropdown-arrow::after {
+.egp-dropdown-arrow::after {
     transform: translate(-50%, -50%) rotate(90deg);
 }
-.sidebar-dropdown.open .dropdown-arrow::before {
+.egp-sidebar-dropdown.open .egp-dropdown-arrow::before {
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.sidebar-dropdown.open .dropdown-arrow::after {
+.egp-sidebar-dropdown.open .egp-dropdown-arrow::after {
     transform: translate(-50%, -50%) rotate(180deg);
 }
-.sidebar[data-state="2"] .dropdown-arrow {
+.egp-sidebar[data-state="2"] .egp-dropdown-arrow {
     opacity: 0;
     width: 0;
     margin: 0;
 }
-.sidebar-overlay {
+.egp-sidebar-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 99;
 }
-.sidebar-overlay.show {
+.egp-sidebar-overlay.show {
     display: block;
 }
-.main-content {
+.egp-main-content {
     flex-grow: 1;
     transition: margin-left var(--transition-speed);
 }
-.main-content.shifted {
+.egp-main-content.shifted {
     margin-left: var(--sidebar-width-open);
 }
-.main-content.compact {
+.egp-main-content.compact {
     margin-left: var(--sidebar-width-closed);
 }
 @media (max-width: 1023px) {
-    .sidebar {
+    .egp-sidebar {
         left: -100%;
     }
-    .sidebar[data-state="round"] {
+    .egp-sidebar[data-state="round"] {
         left: 0;
     }
-    .main-content {
+    .egp-main-content {
         margin-left: 0 !important;
     }
-    .sidebar-link.active::before,
-    .sidebar-link.active::after {
+    .egp-sidebar-link.active::before,
+    .egp-sidebar-link.active::after {
         display: none;
     }
 }

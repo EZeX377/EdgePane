@@ -1,3 +1,39 @@
+/*!
+ * EdgePane Sidebar (EGP version)
+ * ------------------------------------
+ * A lightweight, responsive, customizable sidebar
+ * with dropdowns, branding, overlay, and theming.
+ *
+ * Version: 1.0.0
+ * Author: Your Name / Team
+ * License: MIT
+ *
+ * Features:
+ * - Initialize sidebar with egpSidebar.init({...})
+ * - Toggle open/closed states
+ * - Dropdown menus (single or multi)
+ * - Overlay for mobile
+ * - Remember dropdown state (optional)
+ * - Callbacks for events (onToggle, onDropdown, etc.)
+ *
+ * Usage:
+ *  egpSidebar.init({
+ *    sidebarState: "open",        // "open" | "closed"
+ *    hoverExpand: true,           // expand on hover
+ *    closeOnClickOutside: true,   // overlay behavior
+ *    dropdownMode: "single",      // or "multi"
+ *    rememberDropdowns: true
+ *  });
+ *
+ * Dependencies:
+ *  - jQuery (required)
+ *  - Bootstrap Icons (optional, for icons)
+ *
+ * ------------------------------------
+ * NOTE: This is the MINIFIED build.
+ * For readable code, see /src/edgepane.js
+ */
+
 (function (root, factory) {
     if (typeof define === "function" && define.amd) {
         // AMD
@@ -39,13 +75,13 @@
             // Merge user options
             this.config = $.extend(true, {}, this.config, userOptions);
 
-            const $sidebar = $(".sidebar");
-            const $overlay = $(".sidebar-overlay");
-            const $toggler = $(".sidebar-toggle");
-            const $mainContent = $(".main-content");
-            const $dropdowns = $(".sidebar-dropdown");
-            const $logo = $(".sidebar-logo");
-            const $brandHeader = $(".sidebar-header");
+            const $sidebar = $(".egp-sidebar");
+            const $overlay = $(".egp-sidebar-overlay");
+            const $toggler = $(".egp-sidebar-toggle");
+            const $mainContent = $(".egp-main-content");
+            const $dropdowns = $(".egp-sidebar-dropdown");
+            const $logo = $(".egp-sidebar-logo");
+            const $brandHeader = $(".egp-sidebar-header");
 
             const SIDEBAR_STATE_KEY = "sidebar-state";
             const DROPDOWN_STATE_KEY = "sidebar-dropdowns";
@@ -54,11 +90,11 @@
             let isHoverOpen = false;
 
             // --- Active link save on click ---
-            $(document).on("click", ".sidebar-link", function () {
-                const text = $(this).find(".sidebar-link-text").text().trim();
+            $(document).on("click", ".egp-sidebar-link", function () {
+                const text = $(this).find(".egp-sidebar-link-text").text().trim();
                 localStorage.setItem(ACTIVE_LINK_KEY, text);
 
-                $(".sidebar-link").removeClass("active");
+                $(".egp-sidebar-link").removeClass("active");
                 $(this).addClass("active");
             });
 
@@ -66,16 +102,16 @@
             (function restoreActiveLink() {
                 const saved = localStorage.getItem(ACTIVE_LINK_KEY);
 
-                const $match = $(".sidebar-link").filter(function () {
+                const $match = $(".egp-sidebar-link").filter(function () {
                     return (
-                        $(this).find(".sidebar-link-text").text().trim() ===
+                        $(this).find(".egp-sidebar-link-text").text().trim() ===
                         saved
                     );
                 });
 
-                $(".sidebar-link").removeClass("active");
+                $(".egp-sidebar-link").removeClass("active");
 
-                ($match.length ? $match : $(".sidebar-link").first()).addClass(
+                ($match.length ? $match : $(".egp-sidebar-link").first()).addClass(
                     "active",
                 );
             })();
@@ -101,9 +137,9 @@
             if (this.config.brand.brandLogoSrc)
                 $logo.attr("src", this.config.brand.brandLogoSrc);
             if (this.config.brand.brandName)
-                $(".sidebar-brand-name").text(this.config.brand.brandName);
+                $(".egp-sidebar-brand-name").text(this.config.brand.brandName);
             if (this.config.brand.brandTagline)
-                $(".sidebar-brand-tagline").text(
+                $(".egp-sidebar-brand-tagline").text(
                     this.config.brand.brandTagline,
                 );
 
@@ -159,7 +195,7 @@
             // --- Dropdown toggle ---
             $dropdowns.each((_, el) => {
                 const $dropdown = $(el);
-                const $toggle = $dropdown.find(".dropdown-toggle").first();
+                const $toggle = $dropdown.find(".egp-dropdown-toggle").first();
 
                 $toggle.on("click", () => {
                     const isOpen = $dropdown.hasClass("open");
@@ -168,18 +204,18 @@
                         $dropdowns
                             .not($dropdown)
                             .removeClass("open")
-                            .find(".dropdown-toggle")
+                            .find(".egp-dropdown-toggle")
                             .attr("aria-expanded", "false");
                         $dropdowns
                             .not($dropdown)
-                            .find(".dropdown-content")
+                            .find(".egp-dropdown-content")
                             .attr("aria-hidden", "true");
                     }
 
                     $dropdown.toggleClass("open");
                     $toggle.attr("aria-expanded", String(!isOpen));
                     $dropdown
-                        .find(".dropdown-content")
+                        .find(".egp-dropdown-content")
                         .attr("aria-hidden", String(isOpen));
 
                     saveDropdowns();
