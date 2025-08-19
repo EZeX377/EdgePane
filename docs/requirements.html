@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>EdgePane —— Pane Perfect Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/logo-d.png" />
+    <!-- Then load Tailwind so it can override defaults -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Load custom styles -->
+    <link rel="stylesheet" href="https://ezex377.github.io/EdgePane/dist/edgepane.min.css" />
+</head>
+<style>
+code {
+    display: inline-block;
+    padding: 0 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem
+}
+</style>
+
+<body class="egp-h-screen egp-flex text-xs egp-sm:text-sm egp-relative egp-overflow-hidden egp-antialiased">
+    <!-- Overlay for small screens -->
+    <div class="egp-sidebar-overlay"></div>
+    <!-- Sidebar -->
+    <nav class="egp-sidebar bg-neutral-800" role="navigation">
+        <!-- Sidebar header -->
+        <div class="egp-sidebar-header">
+            <img src="" alt="Logo" class="egp-sidebar-logo" />
+            <div class="egp-sidebar-title">
+                <p class="egp-sidebar-brand-name"></p>
+                <p class="egp-sidebar-brand-tagline"></p>
+            </div>
+        </div>
+        <!-- Sidebar menu -->
+        <ul class="egp-sidebar-menu">
+            <!-- Section: GENERAL -->
+            <li class="egp-sidebar-section-heading" data-section-heading="GETTING STARTED"></li>
+            <li>
+                <a href="../index.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-journal"></i></span>
+                    <span class="egp-sidebar-link-text">Introduction</span>
+                </a>
+            </li>
+            <li>
+                <a href="./requirements.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-pin-angle"></i></span>
+                    <span class="egp-sidebar-link-text">Requirements</span>
+                </a>
+            </li>
+            <li>
+                <a href="./cdns.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-globe2"></i></span>
+                    <span class="egp-sidebar-link-text">CDN Links</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="CORE CONCEPT"></li>
+            <li>
+                <a href="" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-rocket-takeoff"></i></span>
+                    <span class="egp-sidebar-link-text">Usage</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-dropdown" id="options">
+                <div class="egp-dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-tools"></i></span>
+                    <span class="egp-sidebar-link-text">Options</span>
+                    <span class="egp-dropdown-arrow"></span>
+                </div>
+                <ul class="egp-dropdown-content">
+                    <li>
+                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
+                    </li>
+                    <li>
+                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
+                    </li>
+                    <li>
+                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">Init Options</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-phone"></i></span>
+                    <span class="egp-sidebar-link-text">Responsive</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-patch-question"></i></span>
+                    <span class="egp-sidebar-link-text">FAQ</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="ACCESSIBILITY"></li>
+            <li>
+                <a href="" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-person-wheelchair"></i></span>
+                    <span class="egp-sidebar-link-text">Accessibility</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-file-text"></i></span>
+                    <span class="egp-sidebar-link-text">License</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Main content -->
+    <div class="egp-main-content">
+        <div class="py-2 sticky top-0 border-b border-gray-200">
+            <div class="max-w-7xl w-full mx-auto px-4 py-2">
+                <div class="flex gap-2 items-center">
+                    <!-- Toggle Button -->
+                    <button class="egp-sidebar-toggle bg-gray-600 hover:bg-gray-700 text-white font-semibold px-2.5 py-2">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <h1 class="text-2xl font-semibold text-gray-700">EdgePane Docs</h1>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl w-full mx-auto text-gray-700 px-4 py-12">
+            <!-- Page Content -->
+            <p class="uppercase font-medium mb-2 text-gray-500">Requirements</p>
+            <p class="text-3xl font-semibold mb-4">System & Project Requirements</p>
+            <p class="mb-4 text-base tracking-wide leading-loose">
+                Before integrating <strong>EdgePane</strong> into your project, ensure that the following requirements are met:
+            </p>
+            <ul class="list-disc list-inside mb-4 text-base tracking-wide leading-loose">
+                <li><strong>Browser Compatibility:</strong> Modern browsers including Chrome, Firefox, Edge, and Safari.</li>
+                <li><strong>jQuery:</strong> Version 3.x or higher is required for sidebar functionality.</li>
+                <li><strong>CSS Support:</strong> Any CSS framework (e.g., TailwindCSS, Bootstrap) can be used for layout and styling.</li>
+                <li><strong>Icons:</strong> Any icon library (e.g., Bootstrap Icons, Font Awesome) can be integrated.</li>
+                <li><strong>HTML Structure:</strong> Basic HTML5 document setup with a container for the sidebar and main content.</li>
+                <li><strong>Responsive Design:</strong> Ensure viewport meta tag is included for mobile and tablet support.</li>
+            </ul>
+            <p class="mb-4 text-base tracking-wide leading-loose">
+                These requirements ensure that EdgePane functions correctly and looks consistent across devices.
+                No additional frameworks or plugins are needed beyond jQuery and standard CSS.
+            </p>
+            <!-- Navigation -->
+            <div class="flex justify-between mt-10 border-t border-gray-200 py-4">
+                <a href="../index.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
+                <a href="./cdns.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script>
+    <script>
+    edgePane.init({
+        sidebarState: "open",
+        hoverExpand: true,
+        closeOnClickOutside: true,
+        dropdownMode: "single",
+        rememberDropdowns: true,
+        fontFamily: "'Montserrat', sans-serif",
+        sidebarWidth: "16rem",
+        sidebarColor: "rgba(225,225,225,1)",
+        textColor: "rgba(70,70,70,1)",
+        activeLinkBg: "rgba(180,180,180,1)",
+        activeLinkColor: "rgba(70,70,70,1)",
+        showBrand: true,
+        brand: {
+            brandLogoSrc: "../assets/images/logo-d.png",
+            brandName: "EdgePane",
+            brandTagline: "Pane Perfect Experience",
+        },
+    });
+    </script>
+</body>
+
+</html>

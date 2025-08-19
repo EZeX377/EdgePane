@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>EdgePane —— Pane Perfect Experience</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="./assets/images/logo-d.png" />
+
+        <!-- Then load Tailwind so it can override defaults -->
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+        <!-- Load custom styles -->
+        <link rel="stylesheet" href="../dist/edgepane.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+    </head>
+    <style></style>
+
+    <body
+        class="egp-h-screen egp-flex text-xs egp-sm:text-sm egp-relative egp-overflow-hidden egp-antialiased"
+    >
+        <!-- Overlay for small screens -->
+        <div class="egp-sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <nav class="egp-sidebar bg-neutral-800" role="navigation">
+            <!-- Sidebar header -->
+            <div class="egp-sidebar-header">
+                <img src="" alt="Logo" class="egp-sidebar-logo" />
+                <div class="egp-sidebar-title">
+                    <p class="egp-sidebar-brand-name"></p>
+                    <p class="egp-sidebar-brand-tagline"></p>
+                </div>
+            </div>
+
+            <!-- Sidebar menu -->
+            <ul class="egp-sidebar-menu">
+                <!-- Section: GENERAL -->
+                <li
+                    class="egp-sidebar-section-heading"
+                    data-section-heading="GENERAL"
+                ></li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-columns-gap"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-person"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-bell"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-chat"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Messages</span>
+                    </a>
+                </li>
+
+                <!-- Section: SYSTEM -->
+                <li
+                    class="egp-sidebar-section-heading"
+                    data-section-heading="SYSTEM"
+                ></li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-hdd"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Storage</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-wifi"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Network</span>
+                    </a>
+                </li>
+                <li class="egp-sidebar-dropdown" id="settings">
+                    <div
+                        class="egp-dropdown-toggle"
+                        role="button"
+                        tabindex="0"
+                        aria-expanded="false"
+                    >
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-gear"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Settings</span>
+                        <span class="egp-dropdown-arrow"></span>
+                    </div>
+                    <ul class="egp-dropdown-content">
+                        <li>
+                            <a href="" class="egp-sidebar-link"
+                                ><span class="egp-sidebar-link-text"
+                                    >Account</span
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="" class="egp-sidebar-link"
+                                ><span class="egp-sidebar-link-text"
+                                    >System</span
+                                ></a
+                            >
+                        </li>
+                        <li>
+                            <a href="" class="egp-sidebar-link"
+                                ><span class="egp-sidebar-link-text"
+                                    >Preferences</span
+                                ></a
+                            >
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Section: REPORTS -->
+                <li
+                    class="egp-sidebar-section-heading"
+                    data-section-heading="REPORTS"
+                ></li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-bar-chart"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-clipboard-data"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Reports</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-graph-up"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Trends</span>
+                    </a>
+                </li>
+
+                <!-- Section: TOOLS -->
+                <li
+                    class="egp-sidebar-section-heading"
+                    data-section-heading="TOOLS"
+                ></li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-folder"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">File Manager</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-terminal"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Console</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="egp-sidebar-link">
+                        <span class="egp-sidebar-link-icon"
+                            ><i class="bi bi-bug"></i
+                        ></span>
+                        <span class="egp-sidebar-link-text">Debug</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main content -->
+        <div class="egp-main-content">
+            <div class="max-w-7xl w-full mx-auto p-4">
+                <button
+                    class="egp-sidebar-toggle bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-3 rounded shadow-md hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400"
+                >
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="../dist/edgepane.min.js"></script>
+        <script>
+            edgePane.init({
+                sidebarState: "open",
+                hoverExpand: true,
+                closeOnClickOutside: true,
+                dropdownMode: "single",
+                rememberDropdowns: true,
+                fontFamily: "'Montserrat', sans-serif",
+                sidebarWidth: "18rem",
+                sidebarColor: "rgba(225,225,225,1)",
+                textColor: "rgba(70,70,70,1)",
+                activeLinkBg: "rgba(180,180,180,1)",
+                activeLinkColor: "rgba(70,70,70,1)",
+                showBrand: true,
+                brand: {
+                    brandLogoSrc: "./assets/images/logo-d.png",
+                    brandName: "EdgePane",
+                    brandTagline: "Pane Perfect Experience",
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -91,7 +91,10 @@
 
             // --- Active link save on click ---
             $(document).on("click", ".egp-sidebar-link", function () {
-                const text = $(this).find(".egp-sidebar-link-text").text().trim();
+                const text = $(this)
+                    .find(".egp-sidebar-link-text")
+                    .text()
+                    .trim();
                 localStorage.setItem(ACTIVE_LINK_KEY, text);
 
                 $(".egp-sidebar-link").removeClass("active");
@@ -100,20 +103,49 @@
 
             // --- Active link restore ---
             (function restoreActiveLink() {
-                const saved = localStorage.getItem(ACTIVE_LINK_KEY);
+                const currentPath = window.location.pathname.replace(/\/$/, "");
 
-                const $match = $(".egp-sidebar-link").filter(function () {
-                    return (
-                        $(this).find(".egp-sidebar-link-text").text().trim() ===
-                        saved
-                    );
-                });
+                let $match = $(".egp-sidebar-link")
+                    .filter(function () {
+                        const href = $(this).attr("href");
+
+                        // If no href or empty, skip URL match
+                        if (!href || href === "#") {
+                            return false;
+                        }
+
+                        const linkPath = new URL(
+                            href,
+                            window.location.origin,
+                        ).pathname.replace(/\/$/, "");
+
+                        return (
+                            currentPath === linkPath ||
+                            currentPath.startsWith(linkPath + "/")
+                        );
+                    })
+                    .first();
+
+                // If no URL-based match, fall back to saved text
+                if (!$match.length) {
+                    const saved = localStorage.getItem(ACTIVE_LINK_KEY);
+                    $match = $(".egp-sidebar-link")
+                        .filter(function () {
+                            return (
+                                $(this)
+                                    .find(".egp-sidebar-link-text")
+                                    .text()
+                                    .trim() === saved
+                            );
+                        })
+                        .first();
+                }
 
                 $(".egp-sidebar-link").removeClass("active");
-
-                ($match.length ? $match : $(".egp-sidebar-link").first()).addClass(
-                    "active",
-                );
+                ($match.length
+                    ? $match
+                    : $(".egp-sidebar-link").first()
+                ).addClass("active");
             })();
 
             // Apply dynamic open width
