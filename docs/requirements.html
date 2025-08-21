@@ -25,7 +25,7 @@ code {
     <!-- Overlay for small screens -->
     <div class="egp-sidebar-overlay"></div>
     <!-- Sidebar -->
-    <nav class="egp-sidebar bg-neutral-800" role="navigation">
+    <nav class="egp-sidebar" role="navigation">
         <!-- Sidebar header -->
         <div class="egp-sidebar-header">
             <img src="" alt="Logo" class="egp-sidebar-logo" />
@@ -37,7 +37,7 @@ code {
         <!-- Sidebar menu -->
         <ul class="egp-sidebar-menu">
             <!-- Section: GENERAL -->
-            <li class="egp-sidebar-section-heading" data-section-heading="GETTING STARTED"></li>
+            <li class="egp-sidebar-section-heading" data-section-heading="MAIN"></li>
             <li>
                 <a href="../index.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-journal"></i></span>
@@ -47,13 +47,13 @@ code {
             <li>
                 <a href="./requirements.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-pin-angle"></i></span>
-                    <span class="egp-sidebar-link-text">Requirements</span>
+                    <span class="egp-sidebar-link-text">Quick Start</span>
                 </a>
             </li>
             <li>
                 <a href="./cdns.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-globe2"></i></span>
-                    <span class="egp-sidebar-link-text">CDN Links</span>
+                    <span class="egp-sidebar-link-text">CDN & Local Setup</span>
                 </a>
             </li>
             <li class="egp-sidebar-section-heading" data-section-heading="CORE CONCEPT"></li>
@@ -66,18 +66,18 @@ code {
             <li class="egp-sidebar-dropdown" id="options">
                 <div class="egp-dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-tools"></i></span>
-                    <span class="egp-sidebar-link-text">Options</span>
+                    <span class="egp-sidebar-link-text">Configuration</span>
                     <span class="egp-dropdown-arrow"></span>
                 </div>
                 <ul class="egp-dropdown-content">
                     <li>
-                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
+                        <a href="./css-classes.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
                     </li>
                     <li>
-                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
+                        <a href="./css-variables.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
                     </li>
                     <li>
-                        <a href="" class="egp-sidebar-link"><span class="egp-sidebar-link-text">Init Options</span></a>
+                        <a href="./js-options.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">JavaScript Options</span></a>
                     </li>
                 </ul>
             </li>
@@ -87,13 +87,14 @@ code {
                     <span class="egp-sidebar-link-text">Responsive</span>
                 </a>
             </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="GUIDES"></li>
             <li>
                 <a href="" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-patch-question"></i></span>
                     <span class="egp-sidebar-link-text">FAQ</span>
                 </a>
             </li>
-            <li class="egp-sidebar-section-heading" data-section-heading="ACCESSIBILITY"></li>
+            <li class="egp-sidebar-section-heading" data-section-heading="REFERENCE"></li>
             <li>
                 <a href="" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-person-wheelchair"></i></span>
@@ -164,13 +165,6 @@ code {
         closeOnClickOutside: true,
         dropdownMode: "single",
         rememberDropdowns: true,
-        fontFamily: "'Montserrat', sans-serif",
-        sidebarWidth: "16rem",
-        sidebarColor: "rgba(225,225,225,1)",
-        textColor: "rgba(70,70,70,1)",
-        activeLinkBg: "rgba(180,180,180,1)",
-        activeLinkColor: "rgba(70,70,70,1)",
-        showBrand: true,
         brand: {
             brandLogoSrc: "../assets/images/logo-d.png",
             brandName: "EdgePane",

@@ -34,7 +34,7 @@
  * For readable code, see /src/edgepane.js
  */
 
-(function (root, factory) {
+(function(root, factory) {
     if (typeof define === "function" && define.amd) {
         // AMD
         define(["jquery"], factory);
@@ -45,7 +45,7 @@
         // Browser global
         root.edgePane = factory(root.jQuery);
     }
-})(this, function ($) {
+})(this, function($) {
     "use strict";
 
     const edgePane = {
@@ -55,20 +55,20 @@
             hoverExpand: true,
             closeOnClickOutside: true,
             rememberDropdowns: true,
-            sidebarColor: "#059669",
+            sidebarColor: "rgba(225,225,225,1)",
             fontFamily: "'Montserrat', sans-serif",
             sidebarWidth: "16rem",
-            textColor: "#fff",
-            activeLinkBg: "rgba(255,255,255,0.7)",
-            activeLinkColor: "rgba(5,150,105,1)",
+            textColor: "rgba(70,70,70,1)",
+            activeLinkBg: "rgba(180,180,180,1)",
+            activeLinkColor: "rgba(70,70,70,1)",
             showBrand: true,
             brand: {
                 brandLogoSrc: "",
                 brandName: "",
                 brandTagline: "",
             },
-            onSidebarToggle: function (state) {},
-            onDropdownToggle: function (id, isOpen) {},
+            onSidebarToggle: function(state) {},
+            onDropdownToggle: function(id, isOpen) {},
         },
 
         init(userOptions = {}) {
@@ -90,7 +90,7 @@
             let isHoverOpen = false;
 
             // --- Active link save on click ---
-            $(document).on("click", ".egp-sidebar-link", function () {
+            $(document).on("click", ".egp-sidebar-link", function() {
                 const text = $(this)
                     .find(".egp-sidebar-link-text")
                     .text()
@@ -102,51 +102,135 @@
             });
 
             // --- Active link restore ---
-            (function restoreActiveLink() {
-                const currentPath = window.location.pathname.replace(/\/$/, "");
+            // (function restoreActiveLink() {
+            //     const currentPath = window.location.pathname.replace(/\/$/, "");
+            //     console.log(currentPath);
 
-                let $match = $(".egp-sidebar-link")
-                    .filter(function () {
-                        const href = $(this).attr("href");
+            //     let $match = $(".egp-sidebar-link")
+            //         .filter(function () {
+            //             const href = $(this).attr("href");
 
-                        // If no href or empty, skip URL match
-                        if (!href || href === "#") {
-                            return false;
-                        }
+            //             // If no href or empty, skip URL match
+            //             if (!href || href === "#") {
+            //                 return false;
+            //             }
 
-                        const linkPath = new URL(
-                            href,
-                            window.location.origin,
-                        ).pathname.replace(/\/$/, "");
+            //             const linkPath = new URL(
+            //                 href,
+            //                 window.location.origin,
+            //             ).pathname.replace(/\/$/, "");
+            //             console.log(linkPath);
 
-                        return (
-                            currentPath === linkPath ||
-                            currentPath.startsWith(linkPath + "/")
-                        );
-                    })
-                    .first();
+            //             return (
+            //                 currentPath === linkPath ||
+            //                 currentPath.startsWith(linkPath + "/")
+            //             );
+            //         })
+            //         .first();
 
-                // If no URL-based match, fall back to saved text
-                if (!$match.length) {
-                    const saved = localStorage.getItem(ACTIVE_LINK_KEY);
-                    $match = $(".egp-sidebar-link")
-                        .filter(function () {
-                            return (
-                                $(this)
-                                    .find(".egp-sidebar-link-text")
-                                    .text()
-                                    .trim() === saved
-                            );
-                        })
-                        .first();
+            //     // If no URL-based match, fall back to saved text
+            //     if (!$match.length) {
+            //         const saved = localStorage.getItem(ACTIVE_LINK_KEY);
+            //         $match = $(".egp-sidebar-link")
+            //             .filter(function () {
+            //                 return (
+            //                     $(this)
+            //                         .find(".egp-sidebar-link-text")
+            //                         .text()
+            //                         .trim() === saved
+            //                 );
+            //             })
+            //             .first();
+            //     }
+
+            //     $(".egp-sidebar-link").removeClass("active");
+            //     ($match.length
+            //         ? $match
+            //         : $(".egp-sidebar-link").first()
+            //     ).addClass("active");
+            // })();
+
+            // ********** Testing actve by routes name ******************
+
+            // Example: your sidebar routes list (could be from hrefs or hardcoded)
+            let allMatch = $(".egp-sidebar-link")
+                .map(function() {
+                    const href = $(this).attr("href");
+
+                    // If no href or empty, skip
+                    if (!href || href === "#") {
+                        return null;
+                    }
+
+                    let linkPath = new URL(href, window.location.origin).pathname;
+
+                    // Remove leading and trailing slash
+                    linkPath = linkPath.replace(/^\/|\/$/g, "");
+
+                    return linkPath; // collect in array
+                })
+                .get(); // convert jQuery object → plain array
+
+
+            console.log(allMatch);
+
+            function getBestRouteFromPath(path) {
+                // Normalize: remove query, hash, and extension like .html/.php
+                let cleanPath = path.split(/[?#]/)[0];
+
+                // Split into segments
+                const parts = cleanPath.split("/").filter(Boolean);
+                console.log(parts);
+
+                if (!parts.length) return null;
+
+                // Last segment
+                const last = parts[parts.length - 1].toLowerCase();
+
+                // Check if last segment exists in allMatch
+                if (allMatch.includes(last)) {
+                    return last;
                 }
 
-                $(".egp-sidebar-link").removeClass("active");
-                ($match.length
-                    ? $match
-                    : $(".egp-sidebar-link").first()
-                ).addClass("active");
-            })();
+                // If not, check last two segments
+                if (parts.length >= 2) {
+                    const lastTwo = parts.slice(-2).join("/").toLowerCase();
+                    if (allMatch.includes(lastTwo)) {
+                        return lastTwo;
+                    }
+                }
+
+                // Nothing matched
+                return null;
+            }
+
+            // Example usage
+            const cuurectRoute = window.location.pathname.replace(/\/$/, "");
+            const routeActive = getBestRouteFromPath(cuurectRoute);
+            console.log(routeActive);
+
+            console.log("Best match:", routeActive);
+            
+            let matchPer = $(".egp-sidebar-link")
+                .filter(function() {
+                    const href = $(this).attr("href");
+                    if (!href || href === "#") return false;
+
+                    const cleanHref = href.replace(/^\.\//, "");
+                    console.log(cleanHref)
+                    return cleanHref === routeActive;
+                })
+                .first();
+
+            // remove old actives
+            $(".egp-sidebar-link").removeClass("active");
+
+            // set new active
+            (matchPer.length ? matchPer : $(".egp-sidebar-link").first()).addClass("active");
+
+
+
+            // *************** End here testing **********************
 
             // Apply dynamic open width
             $(":root").css("--sidebar-width-open", this.config.sidebarWidth);

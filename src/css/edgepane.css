@@ -30,15 +30,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 :root {
-    --sidebar-bg: rgba(5, 150, 105, 1);
-    --sidebar-bg-active: rgba(255, 255, 255, 0.7);
-    --sidebar-color: #fff;
-    --sidebar-color-active: rgba(5, 150, 105, 1);
+    --sidebar-bg: rgba(225,225,225,1);
+    --sidebar-bg-active: rgba(180,180,180,1);
+    --sidebar-color: rgba(70,70,70,1);
+    --sidebar-color-active: rgba(70,70,70,1);
     --sidebar-width-open: 16rem;
     --sidebar-width-closed: 4rem;
     --transition-speed: 0.25s;
     --sidebar-font: "Montserrat", sans-serif;
     --icon-size: 0.88rem;
+    --header-padding: 0.75rem 1rem;
+    --menu-padding: 0.5rem;
+    --link-padding: 0.75rem 1.05rem;
 }
 .egp-sidebar {
     position: fixed;
@@ -65,7 +68,7 @@
 .egp-sidebar-header {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
+    padding: var(--header-padding);
     transition: justify-content var(--transition-speed);
 }
 .egp-sidebar[data-state="closed"] .egp-sidebar-header {
@@ -151,7 +154,7 @@
         margin var(--transition-speed);
 }
 .egp-sidebar-menu {
-    padding: 0.5rem;
+    padding: var(--menu-padding);
     overflow-y: auto;
     overflow-x: hidden;
     flex-grow: 1;
@@ -178,7 +181,7 @@
 .egp-sidebar-link {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1.05rem;
+    padding: var(--link-padding);
     text-decoration: none;
     border-radius: 0.5rem;
     color: inherit;
@@ -259,7 +262,7 @@
     align-items: center;
     cursor: pointer;
     border-radius: 0.5rem;
-    padding: 0.75rem 1.05rem;
+    padding: var(--link-padding);
 }
 .egp-dropdown-arrow {
     position: relative;
