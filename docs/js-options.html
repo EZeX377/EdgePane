@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>EdgePane —— Pane Perfect Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/logo-d.png" />
+    <!-- Then load Tailwind so it can override defaults -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Load custom styles -->
+    <link rel="stylesheet" href="https://ezex377.github.io/EdgePane/dist/edgepane.min.css" />
+</head>
+<style>
+* {
+    font-family: "Montserrat", serif;
+}
+
+code {
+    display: inline-block;
+    padding: 0 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem
+}
+
+.pre {
+    display: block;
+    background-color: #f2f9e7;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.pre-header {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: #272727;
+}
+
+pre {
+    padding: 0.5rem 1.5rem;
+    overflow-x: auto;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem;
+    line-height: 0;
+    cursor: pointer;
+    font-size: 0.65rem;
+}
+
+thead {
+    background-color: #f2f9e7;
+}
+</style>
+
+<body class="h-screen flex text-xs sm:text-base relative overflow-hidden antialiased">
+    <!-- Overlay for small screens -->
+    <div class="egp-sidebar-overlay"></div>
+    <!-- Sidebar -->
+    <nav class="egp-sidebar" role="navigation">
+        <!-- Sidebar header -->
+        <div class="egp-sidebar-header">
+            <img src="" alt="Logo" class="egp-sidebar-logo" />
+            <div class="egp-sidebar-title">
+                <p class="egp-sidebar-brand-name"></p>
+                <p class="egp-sidebar-brand-tagline"></p>
+            </div>
+        </div>
+        <!-- Sidebar menu -->
+        <ul class="egp-sidebar-menu">
+            <!-- Section: GENERAL -->
+            <li class="egp-sidebar-section-heading" data-section-heading="MAIN"></li>
+            <li>
+                <a href="../index.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-journal"></i></span>
+                    <span class="egp-sidebar-link-text">Introduction</span>
+                </a>
+            </li>
+            <li>
+                <a href="./requirements.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-pin-angle"></i></span>
+                    <span class="egp-sidebar-link-text">Quick Start</span>
+                </a>
+            </li>
+            <li>
+                <a href="./cdns.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-globe2"></i></span>
+                    <span class="egp-sidebar-link-text">CDN & Local Setup</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="CORE CONCEPT"></li>
+            <li>
+                <a href="./usage.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-rocket-takeoff"></i></span>
+                    <span class="egp-sidebar-link-text">Usage</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-dropdown" id="options">
+                <div class="egp-dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-tools"></i></span>
+                    <span class="egp-sidebar-link-text">Configuration</span>
+                    <span class="egp-dropdown-arrow"></span>
+                </div>
+                <ul class="egp-dropdown-content">
+                    <li>
+                        <a href="./css-classes.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
+                    </li>
+                    <li>
+                        <a href="./css-variables.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
+                    </li>
+                    <li>
+                        <a href="./js-options.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">JavaScript Options</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="./responsive.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-phone"></i></span>
+                    <span class="egp-sidebar-link-text">Responsive</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="GUIDES"></li>
+            <li>
+                <a href="./faq.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-patch-question"></i></span>
+                    <span class="egp-sidebar-link-text">FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Main content -->
+    <div class="egp-main-content overflow-y-auto">
+        <!-- Sticky Topbar -->
+        <div class="bg-white py-2 sticky top-0 border-b border-gray-200 z-50">
+            <div class="max-w-7xl w-full mx-auto px-4 py-3">
+                <div class="flex gap-4 items-center justify-between">
+                    <div class="flex gap-2 items-center">
+                        <!-- Toggle Button -->
+                        <button class="egp-sidebar-toggle bg-gray-600 hover:bg-gray-700 text-white font-semibold px-2.5 py-2">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <h1 class="text-base md:text-2xl font-semibold text-gray-700">EdgePane Documentation</h1>
+                    </div>
+                    <!-- GitHub -->
+                    <a href="https://github.com/EZeX377/EdgePane" target="_blank">
+                        <img src="https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="View on GitHub" class="rounded hidden md:block">
+                        <img src="https://img.shields.io/badge/-181717?style=for-the-badge&logo=github&logoColor=white" alt="View on GitHub" class="rounded md:hidden">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl w-full mx-auto px-4 py-12 text-gray-700">
+            <!-- Page Header -->
+            <p class="uppercase font-medium mb-2 text-gray-500">Reference</p>
+            <h1 class="text-3xl font-semibold mb-4">EdgePane JavaScript Options</h1>
+            <p class="text-base tracking-wide leading-relaxed mb-8">
+                These options let you customize how EdgePane behaves and looks.
+                You can pass them into <code>edgePane.init()</code> to override the defaults.
+            </p>
+            <!-- Options Table -->
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Option</th>
+                            <th class="px-4 py-3">Type</th>
+                            <th class="px-4 py-3">Default</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">dropdownMode</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"multi"</td>
+                            <td class="px-4 py-3">Defines dropdown behavior. <code>"multi"</code> allows multiple open dropdowns, <code>"single"</code> keeps only one open at a time.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">sidebarState</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"open"</td>
+                            <td class="px-4 py-3">Initial state of the sidebar (<code>"open"</code> | <code>"closed"</code>).</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">hoverExpand</td>
+                            <td class="px-4 py-3">boolean</td>
+                            <td class="px-4 py-3">true</td>
+                            <td class="px-4 py-3">Expand sidebar automatically on hover when collapsed.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">closeOnClickOutside</td>
+                            <td class="px-4 py-3">boolean</td>
+                            <td class="px-4 py-3">true</td>
+                            <td class="px-4 py-3">Closes the sidebar when clicking outside (mobile/overlay mode).</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">rememberDropdowns</td>
+                            <td class="px-4 py-3">boolean</td>
+                            <td class="px-4 py-3">true</td>
+                            <td class="px-4 py-3">Remembers open/closed state of dropdowns between page reloads.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">sidebarColor</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"rgba(225,225,225,1)"</td>
+                            <td class="px-4 py-3">Background color of the sidebar.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">fontFamily</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"'Montserrat', sans-serif"</td>
+                            <td class="px-4 py-3">Font family for sidebar text.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">sidebarWidth</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"16rem"</td>
+                            <td class="px-4 py-3">Width of the sidebar when expanded.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">textColor</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"rgba(70,70,70,1)"</td>
+                            <td class="px-4 py-3">Default text color for links. Accepts HEX, RGB, or RGBA.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">activeLinkBg</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"rgba(180,180,180,1)"</td>
+                            <td class="px-4 py-3">Background color for the active link. Accepts HEX, RGB, or RGBA.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">activeLinkColor</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">"rgba(70,70,70,1)"</td>
+                            <td class="px-4 py-3">Text color for the active link. Accepts HEX, RGB, or RGBA.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">showBrand</td>
+                            <td class="px-4 py-3">boolean</td>
+                            <td class="px-4 py-3">true</td>
+                            <td class="px-4 py-3">Whether to display brand section in the sidebar.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">brand.brandLogoSrc</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">""</td>
+                            <td class="px-4 py-3">Logo image URL in the brand section.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">brand.brandName</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">""</td>
+                            <td class="px-4 py-3">Brand name displayed in the sidebar.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">brand.brandTagline</td>
+                            <td class="px-4 py-3">string</td>
+                            <td class="px-4 py-3">""</td>
+                            <td class="px-4 py-3">Small tagline text under brand name.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">onSidebarToggle</td>
+                            <td class="px-4 py-3">function</td>
+                            <td class="px-4 py-3">function(state){}</td>
+                            <td class="px-4 py-3">Callback triggered when sidebar is toggled. Receives <code>state</code> ("open" or "closed").</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">onDropdownToggle</td>
+                            <td class="px-4 py-3">function</td>
+                            <td class="px-4 py-3">function(id,isOpen){}</td>
+                            <td class="px-4 py-3">Callback triggered when a dropdown toggles. Receives <code>id</code> and <code>isOpen</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Example -->
+            <h2 class="text-xl font-semibold mb-3">Usage Example</h2>
+            <div class="pre">
+                <div class="pre-header">
+                    <p class="font-medium">EdgePane CSS</p>
+                    <button class="copy-button"><i class="bi bi-clipboard"></i> <span class="hidden md:block">Copy</span></button>
+                </div>
+                <div class="pre-body">
+                    <pre>edgePane.init({
+    sidebarState: "open",
+    hoverExpand: true,
+    closeOnClickOutside: true,
+    dropdownMode: "single",
+    rememberDropdowns: true,
+    fontFamily: "'Montserrat', sans-serif",
+    sidebarWidth: "18rem",
+    sidebarColor: "rgba(225,225,225,1)",
+    textColor: "rgba(70,70,70,1)",
+    activeLinkBg: "rgba(180,180,180,1)",
+    activeLinkColor: "rgba(70,70,70,1)",
+    showBrand: true,
+    onSidebarToggle: function (state) {
+        console.log("Sidebar state changed →", state);
+        // Example: update a status badge
+        document.querySelector("#sidebarStatus").textContent = state;
+    },
+    onDropdownToggle: function (id, isOpen) {
+        console.log("Dropdown toggled →", id, "Open:", isOpen);
+        // Example: highlight the dropdown if open
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.backgroundColor = isOpen ? "rgba(0,150,136,0.1)" : "transparent";
+        }
+    },
+});</pre>
+                </div>
+            </div>
+            <!-- Footer Note -->
+            <div class="mt-12 p-4 bg-yellow-50 border border-gray-200 rounded-md">
+                <p class="text-xs text-yellow-600">
+                    💡 All options are optional. If not provided, defaults will be used.
+                </p>
+            </div>
+            <!-- Navigation -->
+            <div class="flex justify-between mt-10 border-t border-gray-200 py-2 px-4">
+                <a href="./css-variables.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
+                <a href="./responsive.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script> -->
+    <script src="../dist/edgepane.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        edgePane.init({
+            sidebarState: "open",
+            hoverExpand: true,
+            closeOnClickOutside: true,
+            dropdownMode: "single",
+            rememberDropdowns: true,
+            brand: {
+                brandLogoSrc: "../assets/images/logo-d.png",
+                brandName: "EdgePane",
+                brandTagline: "Pane Perfect Experience",
+            },
+        });
+
+        $(".copy-button").click(function() {
+            // find the nearest code block text
+            const codeText = $(this).parent().parent().find('.pre-body>pre').text().trim();
+            // copy to clipboard
+            navigator.clipboard.writeText(codeText).then(() => {
+                // show temporary feedback
+                $(this).html("<i class='bi bi-clipboard-check'></i> Copied!")
+                setTimeout(() => {
+                    $(this).html("<i class='bi bi-clipboard'></i> Copy");
+                }, 1500);
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

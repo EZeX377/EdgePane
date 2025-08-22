@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <title>EdgePane —— Pane Perfect Experience</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./assets/images/logo-d.png" />
+    <link rel="icon" type="image/png" href="../assets/images/logo-d.png" />
     <!-- Then load Tailwind so it can override defaults -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -23,6 +23,46 @@ code {
     padding: 0 0.5rem;
     background-color: #f2f9e7;
     border-radius: .5rem
+}
+
+.pre {
+    display: block;
+    background-color: #f2f9e7;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.pre-header {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: #272727;
+}
+
+pre {
+    padding: 0.5rem 1.5rem;
+    overflow-x: auto;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem;
+    line-height: 0;
+    cursor: pointer;
+    font-size: 0.65rem;
+}
+
+thead {
+    background-color: #f2f9e7;
 }
 </style>
 
@@ -44,26 +84,26 @@ code {
             <!-- Section: GENERAL -->
             <li class="egp-sidebar-section-heading" data-section-heading="MAIN"></li>
             <li>
-                <a href="./index.html" class="egp-sidebar-link">
+                <a href="../index.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-journal"></i></span>
                     <span class="egp-sidebar-link-text">Introduction</span>
                 </a>
             </li>
             <li>
-                <a href="./docs/requirements.html" class="egp-sidebar-link">
+                <a href="./requirements.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-pin-angle"></i></span>
                     <span class="egp-sidebar-link-text">Quick Start</span>
                 </a>
             </li>
             <li>
-                <a href="./docs/cdns.html" class="egp-sidebar-link">
+                <a href="./cdns.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-globe2"></i></span>
                     <span class="egp-sidebar-link-text">CDN & Local Setup</span>
                 </a>
             </li>
             <li class="egp-sidebar-section-heading" data-section-heading="CORE CONCEPT"></li>
             <li>
-                <a href="./docs/usage.html" class="egp-sidebar-link">
+                <a href="./usage.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-rocket-takeoff"></i></span>
                     <span class="egp-sidebar-link-text">Usage</span>
                 </a>
@@ -76,25 +116,25 @@ code {
                 </div>
                 <ul class="egp-dropdown-content">
                     <li>
-                        <a href="./docs/css-classes.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
+                        <a href="./css-classes.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
                     </li>
                     <li>
-                        <a href="./docs/css-variables.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
+                        <a href="./css-variables.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
                     </li>
                     <li>
-                        <a href="./docs/js-options.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">JavaScript Options</span></a>
+                        <a href="./js-options.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">JavaScript Options</span></a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="./docs/responsive.html" class="egp-sidebar-link">
+                <a href="./responsive.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-phone"></i></span>
                     <span class="egp-sidebar-link-text">Responsive</span>
                 </a>
             </li>
             <li class="egp-sidebar-section-heading" data-section-heading="GUIDES"></li>
             <li>
-                <a href="./docs/faq.html" class="egp-sidebar-link">
+                <a href="./faq.html" class="egp-sidebar-link">
                     <span class="egp-sidebar-link-icon"><i class="bi bi-patch-question"></i></span>
                     <span class="egp-sidebar-link-text">FAQ</span>
                 </a>
@@ -105,7 +145,7 @@ code {
     <div class="egp-main-content overflow-y-auto">
         <!-- Sticky Topbar -->
         <div class="bg-white py-2 sticky top-0 border-b border-gray-200 z-50">
-            <div class="max-w-7xl w-full mx-auto px-4 py-2">
+            <div class="max-w-7xl w-full mx-auto px-4 py-3">
                 <div class="flex gap-4 items-center justify-between">
                     <div class="flex gap-2 items-center">
                         <!-- Toggle Button -->
@@ -122,65 +162,72 @@ code {
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl w-full mx-auto text-gray-700 px-4 py-12">
-            <!-- Page Content -->
-            <p class="uppercase font-medium mb-2 text-gray-500">Introduction</p>
-            <p class="text-3xl font-semibold mb-6">Getting Started with EdgePane</p>
-            <!-- Badges -->
-            <div class="flex flex-wrap gap-2 mb-6">
-                <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5 Badge" class="rounded">
-                <img src="https://img.shields.io/badge/CSS3-00A63E?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3 Badge" class="rounded">
-                <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white" alt="jQuery Badge" class="rounded">
-                <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge" class="rounded">
-            </div>
-            <p class="mb-4 text-base tracking-wide leading-loose">
-                <strong>EdgePane</strong> is a lightweight, responsive, and highly customizable sidebar component designed to streamline navigation in modern web applications.
-                It provides an intuitive interface for creating collapsible menus, multi-level dropdowns, and responsive layouts without relying on heavy frameworks.
-            </p>
-            <p class="mb-4 text-base tracking-wide leading-loose">
-                Built with minimal custom CSS and jQuery, EdgePane is easy to integrate into existing projects.
-                All classes are prefixed with <code>egp-</code> to ensure compatibility and prevent conflicts with other styles or libraries.
-                Whether you’re building dashboards, admin panels, or content-heavy websites, EdgePane adapts seamlessly to various screen sizes and devices.
-            </p>
-            <p class="mb-4 text-base tracking-wide leading-loose">
-                Key features include:
-            </p>
-            <ul class="list-disc list-inside mb-4 text-base tracking-wide leading-loose">
-                <li>Responsive sidebar that collapses or expands smoothly.</li>
-                <li>Multi-level dropdown menus for structured navigation.</li>
-                <li>Overlay support for mobile and tablet views.</li>
-                <li>Easy theming with custom CSS variables.</li>
-                <li>Lightweight footprint ensuring fast page load.</li>
-            </ul>
-            <p class="mb-4 text-base tracking-wide leading-loose">
-                With EdgePane, developers can focus on building functionality while maintaining a clean and organized UI.
-                Its simplicity and modularity make it suitable for both small projects and complex enterprise applications.
-            </p>
-            <p class="mb-4 text-base tracking-wide leading-loose italic">
-                Note: You can see a live demo of the sidebar throughout these documentation pages, showing its appearance and behavior in a real usage context.
-            </p>
+        <div class="max-w-7xl w-full mx-auto px-4 py-12 text-gray-700">
+            <!-- Page Header -->
+            <p class="uppercase font-medium mb-2 text-gray-500">Layout</p>
+            <h1 class="text-3xl font-semibold mb-3">Responsive Behavior</h1>
+<p class="mb-3">EdgePane is fully responsive and adapts automatically to desktop, tablet, and mobile devices.</p>
+
+<ul class="list-decimal list-inside space-y-1">
+  <li><strong>On mobile/tablet:</strong></li>
+  <ul class="list-disc list-inside ml-5 space-y-1">
+    <li>Sidebar is <code>hidden</code> by default</li>
+    <li><code>.egp-sidebar-overlay</code> appears when sidebar is open</li>
+    <li>Toggling works via <code>.egp-sidebar-toggle</code> button</li>
+  </ul>
+
+  <li><strong>On desktop:</strong></li>
+  <ul class="list-disc list-inside ml-5 space-y-1">
+    <li>Sidebar state (<code>open</code> | <code>closed</code>) is respected</li>
+    <li>Overlay is not used, sidebar stays docked</li>
+    <li>Hover expand works when <code>hoverExpand: true</code> is set</li>
+  </ul>
+</ul>
+
+<h3 class="text-lg font-semibold mt-4 mb-2">💡 Tips</h3>
+<ul class="list-disc list-inside space-y-1">
+  <li>Use <code>sidebarState: "open"</code> or <code>"closed"</code> in config for default desktop behavior</li>
+  <li>On mobile, sidebar will always start <code>closed</code> for better UX</li>
+  <li>Customize breakpoints via media queries if needed</li>
+</ul>
+
             <!-- Navigation -->
-            <div class="flex justify-between mt-10 border-t border-gray-200 py-4">
-                <span></span>
-                <a href="./docs/requirements.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
+            <div class="flex justify-between mt-10 border-t border-gray-200 py-2 px-4">
+                <a href="./js-options.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
+                <a href="./faq.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script>
+    <!-- <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script> -->
+    <script src="../dist/edgepane.min.js"></script>
     <script>
-    edgePane.init({
-        sidebarState: "open",
-        hoverExpand: true,
-        closeOnClickOutside: true,
-        dropdownMode: "single",
-        rememberDropdowns: true,
-        showBrand: true,
-        brand: {
-            brandLogoSrc: "./assets/images/logo-d.png",
-            brandName: "EdgePane",
-            brandTagline: "Pane Perfect Experience",
-        },
+    $(document).ready(function() {
+        edgePane.init({
+            sidebarState: "open",
+            hoverExpand: true,
+            closeOnClickOutside: true,
+            dropdownMode: "single",
+            rememberDropdowns: true,
+            brand: {
+                brandLogoSrc: "../assets/images/logo-d.png",
+                brandName: "EdgePane",
+                brandTagline: "Pane Perfect Experience",
+            },
+        });
+
+        $(".copy-button").click(function() {
+            // find the nearest code block text
+            const codeText = $(this).parent().parent().find('.pre-body>pre').text().trim();
+            // copy to clipboard
+            navigator.clipboard.writeText(codeText).then(() => {
+                // show temporary feedback
+                $(this).html("<i class='bi bi-clipboard-check'></i> Copied!")
+                setTimeout(() => {
+                    $(this).html("<i class='bi bi-clipboard'></i> Copy");
+                }, 1500);
+            });
+        });
     });
     </script>
 </body>

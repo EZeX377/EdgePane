@@ -34,7 +34,7 @@
  * For readable code, see /src/edgepane.js
  */
 
-(function(root, factory) {
+(function (root, factory) {
     if (typeof define === "function" && define.amd) {
         // AMD
         define(["jquery"], factory);
@@ -45,7 +45,7 @@
         // Browser global
         root.edgePane = factory(root.jQuery);
     }
-})(this, function($) {
+})(this, function ($) {
     "use strict";
 
     const edgePane = {
@@ -67,8 +67,8 @@
                 brandName: "",
                 brandTagline: "",
             },
-            onSidebarToggle: function(state) {},
-            onDropdownToggle: function(id, isOpen) {},
+            onSidebarToggle: function (state) {},
+            onDropdownToggle: function (id, isOpen) {},
         },
 
         init(userOptions = {}) {
@@ -88,149 +88,114 @@
             const ACTIVE_LINK_KEY = "active-link-key";
 
             let isHoverOpen = false;
+            let matchPer = null;
 
             // --- Active link save on click ---
-            $(document).on("click", ".egp-sidebar-link", function() {
-                const text = $(this)
-                    .find(".egp-sidebar-link-text")
-                    .text()
-                    .trim();
-                localStorage.setItem(ACTIVE_LINK_KEY, text);
+            (function () {
+                // On click: store active link and highlight it
+                $(document).on("click", ".egp-sidebar-link", function () {
+                    const text = $(this)
+                        .find(".egp-sidebar-link-text")
+                        .text()
+                        .trim();
+                    localStorage.setItem(ACTIVE_LINK_KEY, text);
 
-                $(".egp-sidebar-link").removeClass("active");
-                $(this).addClass("active");
-            });
+                    $(".egp-sidebar-link").removeClass("active");
+                    $(this).addClass("active");
+                });
 
-            // --- Active link restore ---
-            // (function restoreActiveLink() {
-            //     const currentPath = window.location.pathname.replace(/\/$/, "");
-            //     console.log(currentPath);
+                // Collect all sidebar href paths
+                let allMatch = $(".egp-sidebar-link")
+                    .map(function () {
+                        const href = $(this).attr("href");
+                        if (!href || href === "#") return null;
 
-            //     let $match = $(".egp-sidebar-link")
-            //         .filter(function () {
-            //             const href = $(this).attr("href");
+                        let linkPath = new URL(href, window.location.origin)
+                            .pathname;
+                        return linkPath.replace(/^\/|\/$/g, "").toLowerCase();
+                    })
+                    .get();
 
-            //             // If no href or empty, skip URL match
-            //             if (!href || href === "#") {
-            //                 return false;
-            //             }
+                function getBestRouteFromPath(path) {
+                    let cleanPath = path.split(/[?#]/)[0]; // remove query/hash
+                    const parts = cleanPath.split("/").filter(Boolean);
 
-            //             const linkPath = new URL(
-            //                 href,
-            //                 window.location.origin,
-            //             ).pathname.replace(/\/$/, "");
-            //             console.log(linkPath);
+                    if (!parts.length) return null;
 
-            //             return (
-            //                 currentPath === linkPath ||
-            //                 currentPath.startsWith(linkPath + "/")
-            //             );
-            //         })
-            //         .first();
+                    const last = parts[parts.length - 1].toLowerCase();
+                    if (allMatch.includes(last)) return last;
 
-            //     // If no URL-based match, fall back to saved text
-            //     if (!$match.length) {
-            //         const saved = localStorage.getItem(ACTIVE_LINK_KEY);
-            //         $match = $(".egp-sidebar-link")
-            //             .filter(function () {
-            //                 return (
-            //                     $(this)
-            //                         .find(".egp-sidebar-link-text")
-            //                         .text()
-            //                         .trim() === saved
-            //                 );
-            //             })
-            //             .first();
-            //     }
-
-            //     $(".egp-sidebar-link").removeClass("active");
-            //     ($match.length
-            //         ? $match
-            //         : $(".egp-sidebar-link").first()
-            //     ).addClass("active");
-            // })();
-
-            // ********** Testing actve by routes name ******************
-
-            // Example: your sidebar routes list (could be from hrefs or hardcoded)
-            let allMatch = $(".egp-sidebar-link")
-                .map(function() {
-                    const href = $(this).attr("href");
-
-                    // If no href or empty, skip
-                    if (!href || href === "#") {
-                        return null;
+                    if (parts.length >= 2) {
+                        const lastTwo = parts.slice(-2).join("/").toLowerCase();
+                        if (allMatch.includes(lastTwo)) return lastTwo;
                     }
 
-                    let linkPath = new URL(href, window.location.origin).pathname;
-
-                    // Remove leading and trailing slash
-                    linkPath = linkPath.replace(/^\/|\/$/g, "");
-
-                    return linkPath; // collect in array
-                })
-                .get(); // convert jQuery object → plain array
-
-
-            console.log(allMatch);
-
-            function getBestRouteFromPath(path) {
-                // Normalize: remove query, hash, and extension like .html/.php
-                let cleanPath = path.split(/[?#]/)[0];
-
-                // Split into segments
-                const parts = cleanPath.split("/").filter(Boolean);
-                console.log(parts);
-
-                if (!parts.length) return null;
-
-                // Last segment
-                const last = parts[parts.length - 1].toLowerCase();
-
-                // Check if last segment exists in allMatch
-                if (allMatch.includes(last)) {
-                    return last;
+                    return null;
                 }
 
-                // If not, check last two segments
-                if (parts.length >= 2) {
-                    const lastTwo = parts.slice(-2).join("/").toLowerCase();
-                    if (allMatch.includes(lastTwo)) {
-                        return lastTwo;
+                // Detect current route
+                const currentRoute = window.location.pathname.replace(
+                    /\/$/,
+                    "",
+                );
+                const routeActive = getBestRouteFromPath(currentRoute);
+
+                if (routeActive) {
+                    // Try to match against sidebar links
+                    matchPer = $(".egp-sidebar-link")
+                        .filter(function () {
+                            const href = $(this).attr("href");
+                            if (!href || href === "#") return false;
+
+                            const cleanHref = href
+                                .replace(/^\.\//, "")
+                                .toLowerCase();
+                            return cleanHref.toLowerCase() === routeActive.toLowerCase();
+                        })
+                        .first();
+                }
+
+                if (matchPer && matchPer.length) {
+                    $(".egp-sidebar-link").removeClass("active");
+                    matchPer.addClass("active");
+
+                    // Update localStorage with the matched text
+                    const text = matchPer
+                        .find(".egp-sidebar-link-text")
+                        .text()
+                        .trim();
+                    localStorage.setItem(ACTIVE_LINK_KEY, text);
+                } else {
+                    const lastActiveText =
+                        localStorage.getItem(ACTIVE_LINK_KEY);
+                    if (lastActiveText) {
+                        matchPer = $(".egp-sidebar-link")
+                            .filter(function () {
+                                return (
+                                    $(this)
+                                        .find(".egp-sidebar-link-text")
+                                        .text()
+                                        .trim() === lastActiveText
+                                );
+                            })
+                            .first();
+
+                        if (matchPer.length) {
+                            $(".egp-sidebar-link").removeClass("active");
+                            matchPer.addClass("active");
+                        }
                     }
                 }
-
-                // Nothing matched
-                return null;
-            }
-
-            // Example usage
-            const cuurectRoute = window.location.pathname.replace(/\/$/, "");
-            const routeActive = getBestRouteFromPath(cuurectRoute);
-            console.log(routeActive);
-
-            console.log("Best match:", routeActive);
-            
-            let matchPer = $(".egp-sidebar-link")
-                .filter(function() {
-                    const href = $(this).attr("href");
-                    if (!href || href === "#") return false;
-
-                    const cleanHref = href.replace(/^\.\//, "");
-                    console.log(cleanHref)
-                    return cleanHref === routeActive;
-                })
-                .first();
+            })();
 
             // remove old actives
             $(".egp-sidebar-link").removeClass("active");
 
             // set new active
-            (matchPer.length ? matchPer : $(".egp-sidebar-link").first()).addClass("active");
-
-
-
-            // *************** End here testing **********************
+            (matchPer.length
+                ? matchPer
+                : $(".egp-sidebar-link").first()
+            ).addClass("active");
 
             // Apply dynamic open width
             $(":root").css("--sidebar-width-open", this.config.sidebarWidth);
@@ -269,8 +234,7 @@
             let savedState = this.config.sidebarState;
             if (this.config.rememberDropdowns) {
                 savedState =
-                    localStorage.getItem(SIDEBAR_STATE_KEY) ||
-                    this.config.sidebarState;
+                    localStorage.getItem(SIDEBAR_STATE_KEY) || savedState;
             }
 
             // Force closed on small screens
@@ -284,9 +248,13 @@
             // --- Load saved dropdown states ---
             let savedDropdowns = [];
             if (this.config.rememberDropdowns) {
-                savedDropdowns = JSON.parse(
-                    localStorage.getItem(DROPDOWN_STATE_KEY) || "[]",
-                );
+                try {
+                    savedDropdowns = JSON.parse(
+                        localStorage.getItem(DROPDOWN_STATE_KEY) || "[]",
+                    );
+                } catch (e) {
+                    savedDropdowns = [];
+                }
             }
 
             if (this.config.dropdownMode === "multi") {
@@ -297,7 +265,7 @@
             }
 
             // --- Sidebar toggle click ---
-            $toggler.on("click", () => {
+            $toggler.off("click").on("click", () => {
                 const isOpen = $sidebar.attr("data-state") === "open";
                 const newState = isOpen ? "closed" : "open";
                 setSidebarState(newState);
@@ -305,7 +273,9 @@
 
             // --- Overlay click closes sidebar ---
             if (this.config.closeOnClickOutside) {
-                $overlay.on("click", () => setSidebarState("closed"));
+                $overlay
+                    .off("click")
+                    .on("click", () => setSidebarState("closed"));
             }
 
             // --- Dropdown toggle ---
@@ -387,15 +357,12 @@
             }
 
             function updateContentShift(state) {
-                if ($(window).width() > 1023) {
-                    if (state === "open") {
-                        $mainContent.addClass("shifted").removeClass("compact");
-                    } else {
-                        $mainContent.addClass("compact").removeClass("shifted");
-                    }
-                } else {
+                if ($(window).width() <= 1023) {
                     $mainContent.removeClass("shifted compact");
+                    return;
                 }
+                $mainContent.toggleClass("shifted", state === "open");
+                $mainContent.toggleClass("compact", state === "closed");
             }
 
             // --- Adjust on window resize ---

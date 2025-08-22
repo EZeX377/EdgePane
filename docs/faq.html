@@ -164,113 +164,76 @@ thead {
         </div>
         <div class="max-w-7xl w-full mx-auto px-4 py-12 text-gray-700">
             <!-- Page Header -->
-            <p class="uppercase font-medium mb-2 text-gray-500">Reference</p>
-            <h1 class="text-3xl font-semibold mb-4">EdgePane CSS Variables</h1>
-            <p class="text-base tracking-wide leading-relaxed mb-8">
-                EdgePane uses CSS custom properties (variables) for easy theming and customization.
-                You can override these in your own stylesheet to match your brand colors, typography, and layout preferences.
-                <span class="text-sm text-gray-500 block">All variables are defined at the <code>:root</code> level.</span>
-            </p>
-            <!-- Variables Table -->
-            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
-                <table class="w-full text-left border-collapse text-xs">
-                    <thead class="border-b border-gray-200">
-                        <tr>
-                            <th class="px-4 py-3">Variable</th>
-                            <th class="px-4 py-3">Default Value</th>
-                            <th class="px-4 py-3">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-bg</td>
-                            <td class="px-4 py-3">rgba(225,225,225,1)</td>
-                            <td class="px-4 py-3">Default background color of the sidebar.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-bg-active</td>
-                            <td class="px-4 py-3">rgba(180,180,180,1)</td>
-                            <td class="px-4 py-3">Background color of the active/hovered menu item.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-color</td>
-                            <td class="px-4 py-3">rgba(70,70,70,1)</td>
-                            <td class="px-4 py-3">Default text/icon color in the sidebar.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-color-active</td>
-                            <td class="px-4 py-3">rgba(70,70,70,1)</td>
-                            <td class="px-4 py-3">Text/icon color for active/hovered menu items.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-width-open</td>
-                            <td class="px-4 py-3">16rem</td>
-                            <td class="px-4 py-3">Width of the sidebar when expanded.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-width-closed</td>
-                            <td class="px-4 py-3">4rem</td>
-                            <td class="px-4 py-3">Width of the sidebar when collapsed.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--transition-speed</td>
-                            <td class="px-4 py-3">0.25s</td>
-                            <td class="px-4 py-3">Duration of sidebar open/close animations.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--sidebar-font</td>
-                            <td class="px-4 py-3">"Montserrat", sans-serif</td>
-                            <td class="px-4 py-3">Font family used in the sidebar.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--icon-size</td>
-                            <td class="px-4 py-3">0.88rem</td>
-                            <td class="px-4 py-3">Default size of icons inside the sidebar.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--header-padding</td>
-                            <td class="px-4 py-3">0.75rem 1rem</td>
-                            <td class="px-4 py-3">Padding inside the sidebar header.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--menu-padding</td>
-                            <td class="px-4 py-3">0.5rem</td>
-                            <td class="px-4 py-3">Padding applied to menu list items.</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 py-3">--link-padding</td>
-                            <td class="px-4 py-3">0.75rem 1.05rem</td>
-                            <td class="px-4 py-3">Padding applied to individual links.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Usage Example -->
-            <h2 class="text-xl font-semibold mb-3">Usage Example</h2>
-                <div class="pre">
-                    <div class="pre-header">
-                        <p class="font-medium">EdgePane CSS</p>
-                        <button class="copy-button"><i class="bi bi-clipboard"></i> <span class="hidden md:block">Copy</span></button>
-                    </div>
-                    <div class="pre-body">
-                        <pre>:root {
-  --sidebar-bg: #059669;
-  --sidebar-color: #ffffff;
-  --sidebar-font: "Poppins", sans-serif;
-}</pre>
+            <p class="uppercase font-medium mb-2 text-gray-500">Help Center</p>
+            <h1 class="text-3xl font-bold mb-6">Frequently Asked Questions</h1>
+            <p class="text-gray-600 mb-8">Here are answers to some common questions about EdgePane. If you don’t find what you’re looking for, feel free to open an issue on GitHub or contact support.</p>
+            <!-- FAQ Accordion -->
+            <div class="space-y-4">
+                <!-- Item 1 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-4 font-semibold flex justify-between items-center toggle-faq text-sm">
+                        How do I install EdgePane?
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 transition-all duration-200 ease-linear overflow-hidden text-gray-700">
+                        <p class="p-4 border-t border-gray-200">
+                            You can install EdgePane by including the CSS and JavaScript files via CDN, or by downloading and hosting them locally. Check the <strong>Quick Start</strong> page and follow the instructions.
+                        </p>
                     </div>
                 </div>
-            <!-- Footer Note -->
-            <div class="mt-12 p-4 bg-yellow-50 border border-gray-200 rounded">
-                <p class="text-xs text-yellow-600">
-                    💡 Simply override any variable in your own stylesheet after including EdgePane CSS.
-                    For example, to change the sidebar background, redefine <code>--sidebar-bg</code> in your custom CSS.
-                </p>
+                <!-- Item 2 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-4 font-semibold flex justify-between items-center toggle-faq text-sm">
+                        Can I customize the sidebar colors and fonts?
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 transition-all duration-200 ease-linear overflow-hidden text-gray-700">
+                        <p class="p-4 border-t border-gray-200">
+                            Yes. EdgePane supports CSS variables and JS options for customizing colors, widths, fonts, and more. See the <strong>Customization</strong> page for details.
+                        </p>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-4 font-semibold flex justify-between items-center toggle-faq text-sm">
+                        Does EdgePane work with frameworks like React, Vue, or Laravel?
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 transition-all duration-200 ease-linear overflow-hidden text-gray-700">
+                        <p class="p-4 border-t border-gray-200">
+                            Absolutely. EdgePane is framework-agnostic, meaning you can use it in plain HTML, or integrate it into React, Vue, Angular, or Laravel projects easily.
+                        </p>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-4 font-semibold flex justify-between items-center toggle-faq text-sm">
+                        How do I make the active link persist across pages?
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 transition-all duration-200 ease-linear overflow-hidden text-gray-700">
+                        <p class="p-4 border-t border-gray-200">
+                            EdgePane automatically saves active links in <code>localStorage</code>. If you navigate using Laravel’s <code>route()</code> or <code>url()</code>, make sure links resolve correctly, and EdgePane will track them.
+                        </p>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="border border-gray-200 rounded-lg">
+                    <button class="w-full text-left p-4 font-semibold flex justify-between items-center toggle-faq text-sm">
+                        Can I listen for sidebar toggle or dropdown events?
+                        <i class="bi bi-chevron-down text-xs"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 transition-all duration-200 ease-linear overflow-hidden text-gray-700">
+                        <p class="p-4 border-t border-gray-200">
+                            Yes. EdgePane provides event callbacks like <code>onSidebarToggle</code> and <code>onDropdownToggle</code> so you can hook into interactions. Check the <strong>JavaScript Options</strong> page for code examples.
+                        </p>
+                    </div>
+                </div>
             </div>
             <!-- Navigation -->
             <div class="flex justify-between mt-10 border-t border-gray-200 py-2 px-4">
-                <a href="./css-classes.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
-                <a href="./js-options.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
+                <a href="./css-variables.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
+                <span></span>
             </div>
         </div>
     </div>
@@ -304,6 +267,22 @@ thead {
                 }, 1500);
             });
         });
+
+
+        $(".toggle-faq").on("click", function() {
+            $(".faq-answer")
+                .addClass("max-h-0")
+                .removeClass("max-h-[15rem]");
+            $(".toggle-faq i").removeClass("rotate-180");
+
+            let $answer = $(this).next(".faq-answer");
+            $answer.toggleClass("max-h-0 max-h-[15rem]");
+
+            if ($answer.hasClass("max-h-[15rem]")) {
+                $(this).find("i").addClass("rotate-180");
+            }
+        });
+
     });
     </script>
 </body>

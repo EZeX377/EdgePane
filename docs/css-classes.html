@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>EdgePane —— Pane Perfect Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/logo-d.png" />
+    <!-- Then load Tailwind so it can override defaults -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Load custom styles -->
+    <link rel="stylesheet" href="https://ezex377.github.io/EdgePane/dist/edgepane.min.css" />
+</head>
+<style>
+* {
+    font-family: "Montserrat", serif;
+}
+
+code {
+    display: inline-block;
+    padding: 0 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem
+}
+
+.pre {
+    display: block;
+    background-color: #f2f9e7;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    border-radius: .5rem;
+    position: relative;
+}
+
+.pre-header {
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: #272727;
+}
+
+pre {
+    padding: 0.5rem 1.5rem;
+    overflow-x: auto;
+}
+
+.copy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 0.5rem;
+    background-color: #f2f9e7;
+    border-radius: .5rem;
+    line-height: 0;
+    cursor: pointer;
+    font-size: 0.65rem;
+}
+thead {
+    background-color: #f2f9e7;
+}
+</style>
+
+<body class="h-screen flex text-xs sm:text-base relative overflow-hidden antialiased">
+    <!-- Overlay for small screens -->
+    <div class="egp-sidebar-overlay"></div>
+    <!-- Sidebar -->
+    <nav class="egp-sidebar" role="navigation">
+        <!-- Sidebar header -->
+        <div class="egp-sidebar-header">
+            <img src="" alt="Logo" class="egp-sidebar-logo" />
+            <div class="egp-sidebar-title">
+                <p class="egp-sidebar-brand-name"></p>
+                <p class="egp-sidebar-brand-tagline"></p>
+            </div>
+        </div>
+        <!-- Sidebar menu -->
+        <ul class="egp-sidebar-menu">
+            <!-- Section: GENERAL -->
+            <li class="egp-sidebar-section-heading" data-section-heading="MAIN"></li>
+            <li>
+                <a href="../index.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-journal"></i></span>
+                    <span class="egp-sidebar-link-text">Introduction</span>
+                </a>
+            </li>
+            <li>
+                <a href="./requirements.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-pin-angle"></i></span>
+                    <span class="egp-sidebar-link-text">Quick Start</span>
+                </a>
+            </li>
+            <li>
+                <a href="./cdns.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-globe2"></i></span>
+                    <span class="egp-sidebar-link-text">CDN & Local Setup</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="CORE CONCEPT"></li>
+            <li>
+                <a href="./usage.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-rocket-takeoff"></i></span>
+                    <span class="egp-sidebar-link-text">Usage</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-dropdown" id="options">
+                <div class="egp-dropdown-toggle" role="button" tabindex="0" aria-expanded="false">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-tools"></i></span>
+                    <span class="egp-sidebar-link-text">Configuration</span>
+                    <span class="egp-dropdown-arrow"></span>
+                </div>
+                <ul class="egp-dropdown-content">
+                    <li>
+                        <a href="./css-classes.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Classes</span></a>
+                    </li>
+                    <li>
+                        <a href="./css-variables.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">CSS Variables</span></a>
+                    </li>
+                    <li>
+                        <a href="./js-options.html" class="egp-sidebar-link"><span class="egp-sidebar-link-text">JavaScript Options</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="./responsive.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-phone"></i></span>
+                    <span class="egp-sidebar-link-text">Responsive</span>
+                </a>
+            </li>
+            <li class="egp-sidebar-section-heading" data-section-heading="GUIDES"></li>
+            <li>
+                <a href="./faq.html" class="egp-sidebar-link">
+                    <span class="egp-sidebar-link-icon"><i class="bi bi-patch-question"></i></span>
+                    <span class="egp-sidebar-link-text">FAQ</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Main content -->
+    <div class="egp-main-content overflow-y-auto">
+        <!-- Sticky Topbar -->
+        <div class="bg-white py-2 sticky top-0 border-b border-gray-200 z-50">
+            <div class="max-w-7xl w-full mx-auto px-4 py-3">
+                <div class="flex gap-4 items-center justify-between">
+                    <div class="flex gap-2 items-center">
+                        <!-- Toggle Button -->
+                        <button class="egp-sidebar-toggle bg-gray-600 hover:bg-gray-700 text-white font-semibold px-2.5 py-2">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <h1 class="text-base md:text-2xl font-semibold text-gray-700">EdgePane Documentation</h1>
+                    </div>
+                    <!-- GitHub -->
+                    <a href="https://github.com/EZeX377/EdgePane" target="_blank">
+                        <img src="https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="View on GitHub" class="rounded hidden md:block">
+                        <img src="https://img.shields.io/badge/-181717?style=for-the-badge&logo=github&logoColor=white" alt="View on GitHub" class="rounded md:hidden">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl w-full mx-auto px-4 py-12 text-gray-700">
+            <!-- Page Header -->
+            <p class="uppercase font-medium mb-2 text-gray-500">Reference</p>
+            <h1 class="text-3xl font-semibold mb-4">EdgePane CSS Classes</h1>
+            <p class="text-base tracking-wide leading-relaxed mb-8">
+                This page lists all the custom CSS classes available in EdgePane, grouped by category.
+                These classes are designed to provide structure, layout, and styling for the sidebar and main content area.
+                <span class="text-sm text-gray-500 block">Note: Utility classes from TailwindCSS and icons from Bootstrap Icons are also used throughout the examples.</span>
+            </p>
+            <!-- Sidebar Structure -->
+            <h2 class="text-xl font-semibold mb-3">Sidebar Structure</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Class</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar</td>
+                            <td class="px-4 py-3">Main sidebar container, fixed to the left.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-header</td>
+                            <td class="px-4 py-3">Header area inside the sidebar (logo, brand, tagline).</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-logo</td>
+                            <td class="px-4 py-3">Logo image inside the sidebar header.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-title</td>
+                            <td class="px-4 py-3">Container for brand name + tagline.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Sidebar Menu -->
+            <h2 class="text-xl font-semibold mb-3">Sidebar Menu</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Class</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-menu</td>
+                            <td class="px-4 py-3">The main menu list inside the sidebar.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-section-heading</td>
+                            <td class="px-4 py-3">Label divider for grouping menu links.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-link</td>
+                            <td class="px-4 py-3">Base class for each navigation link.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-link-icon</td>
+                            <td class="px-4 py-3">Icon wrapper for a link (Bootstrap Icons recommended).</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-link-text</td>
+                            <td class="px-4 py-3">Text label for the sidebar link.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-dropdown</td>
+                            <td class="px-4 py-3">A dropdown menu inside the sidebar.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-dropdown-toggle</td>
+                            <td class="px-4 py-3">Clickable parent link that expands/collapses a dropdown.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-dropdown-menu</td>
+                            <td class="px-4 py-3">Nested list inside a dropdown.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Main Content -->
+            <h2 class="text-xl font-semibold mb-3">Main Content</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Class</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.egp-main-content</td>
+                            <td class="px-4 py-3">Wrapper for the page’s main content (sits next to the sidebar).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Toggle Button -->
+            <h2 class="text-xl font-semibold mb-3">Toggle Button</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Class</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.egp-sidebar-toggle</td>
+                            <td class="px-4 py-3">Button used to open/close the sidebar.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Overlay -->
+            <h2 class="text-xl font-semibold mb-3">Overlay</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3">Class</th>
+                            <th class="px-4 py-3">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.egp-overlay</td>
+                            <td class="px-4 py-3">Fullscreen background overlay, shown when sidebar is open in mobile view.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- States -->
+            <h2 class="text-xl font-semibold mb-3">State Classes</h2>
+            <div class="overflow-x-auto mb-8 border border-gray-200 rounded-md">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead class="border-b border-gray-200">
+                        <tr>
+                            <th class="px-4 py-3 ">Class</th>
+                            <th class="px-4 py-3 ">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-4 py-3">.active</td>
+                            <td class="px-4 py-3">Marks the currently active link.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.open</td>
+                            <td class="px-4 py-3">Marks a dropdown as expanded.</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3">.collapsed</td>
+                            <td class="px-4 py-3">Marks the sidebar when it’s collapsed (narrow mode).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Footer Note -->
+            <div class="mt-12 p-4 bg-yellow-50 border border-gray-200 rounded-md">
+                <p class="text-xs text-yellow-600">
+                    💡 You can copy and paste these classes directly into your project.
+                    Combine them with <a href="https://tailwindcss.com/docs" target="_blank" class="text-blue-600 hover:underline">TailwindCSS utilities</a> for further customization.
+                </p>
+            </div>
+            <!-- Navigation -->
+            <div class="flex justify-between mt-10 border-t border-gray-200 py-2 px-4">
+                <a href="./usage.html" class="hover:underline text-gray-700 font-medium"><i class="bi bi-chevron-left text-xs"></i> Previous</a>
+                <a href="./css-classes.html" class="hover:underline text-gray-700 font-medium">Next <i class="bi bi-chevron-right text-xs"></i></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script> -->
+    <script src="../dist/edgepane.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        edgePane.init({
+            sidebarState: "open",
+            hoverExpand: true,
+            closeOnClickOutside: true,
+            dropdownMode: "single",
+            rememberDropdowns: true,
+            brand: {
+                brandLogoSrc: "../assets/images/logo-d.png",
+                brandName: "EdgePane",
+                brandTagline: "Pane Perfect Experience",
+            },
+        });
+
+        $(".copy-button").click(function() {
+            // find the nearest code block text
+            const codeText = $(this).parent().parent().find('.pre-body>pre').text().trim();
+            // copy to clipboard
+            navigator.clipboard.writeText(codeText).then(() => {
+                // show temporary feedback
+                $(this).html("<i class='bi bi-clipboard-check'></i> Copied!")
+                setTimeout(() => {
+                    $(this).html("<i class='bi bi-clipboard'></i> Copy");
+                }, 1500);
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

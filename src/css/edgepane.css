@@ -136,7 +136,7 @@
     flex-shrink: 0;
     font-size: var(--icon-size);
 }
-.egp-sidebar-link-text{white-space: nowrap;}
+.egp-sidebar-link-text{font-size: 0.875rem;white-space: nowrap;}
 .egp-sidebar[data-state="open"] .egp-sidebar-link-text,
 .egp-sidebar[data-state="open"] .egp-dropdown-toggle .egp-sidebar-link-text {
     margin-left: 0.75rem;
