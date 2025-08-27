@@ -1,16 +1,16 @@
 <div align="center">
-	<img src="./assets/images/logo-d.png" alt="EdgePane Logo" width="50" style="vertical-align: middle; margin-right: 8px;" /> 
-	<h1>EdgePane —— Pane Perfect Experience</h1>
 
-# Beautiful and customizable sidebar component.
+<img src="./assets/images/logo-d.png" alt="EdgePane Logo" width="50" style="vertical-align: middle; margin-right: 8px;" />
 
+# EdgePane — Pane Perfect Experience  
 
-<p>
+<sub>Beautiful and customizable sidebar component</sub>  
+
 ![HTML5](https://img.shields.io/badge/HTML5-orange?logo=html5&logoColor=white) 
 ![CSS3](https://img.shields.io/badge/CSS3-blue?logo=css3&logoColor=white) 
 ![JavaScript](https://img.shields.io/badge/JavaScript-yellow?logo=javascript&logoColor=black)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./docs/license.html) 
-</p>
+![[License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./docs/license.html) 
+
 </div>
 ---
 
