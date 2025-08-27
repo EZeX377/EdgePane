@@ -1,83 +1,90 @@
-# EdgePane —— Pane Perfect Experience
+<h1 align="center">EdgePane —— Pane Perfect Experience</h1>
 
-Beautiful and customizable sidebar component.  
-Released under the **MIT License**.
+<p align="center">
+  Beautiful and customizable sidebar component.
+</p>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./docs/license.html)
+<p align="center">
+  <a href="./docs/license.html">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
+  </a>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=fff&style=flat" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=fff&style=flat" alt="CSS3">
+</p>
 
 ---
 
-## Documentation
+## 📖 Documentation
 
-📖 Full documentation is available here: [EdgePane Docs](https://ezex377.github.io/EdgePane/index.html)
+Full documentation is available here:  
+👉 [EdgePane Docs](https://ezex377.github.io/EdgePane/index.html)
 
 ---
 
-## Installation (via CDN)
+## 🚀 Installation (via CDN)
 
-Just include the following in your HTML:
+Add the following to your HTML:
 
 ```html
 <link rel="stylesheet" href="https://ezex377.github.io/EdgePane/dist/edgepane.min.css" />
 <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script>
 ```
-
 ---
 
-## Basic usage
+## ⚡ Basic usage
 
 HTML:
 
 ```html
-&lt;!-- Sidebar -->
-&lt;nav class="egp-sidebar bg-neutral-800" role="navigation">
+<!-- Sidebar -->
+<nav class="egp-sidebar bg-neutral-800" role="navigation">
 
-  &lt;!-- Sidebar Header -->
-  &lt;div class="egp-sidebar-header">
-    &lt;img src="./assets/images/logo-d.png" alt="Logo" class="egp-sidebar-logo" />
-    &lt;div class="egp-sidebar-title">
-      &lt;p class="egp-sidebar-brand-name">EdgePane&lt;/p>
-      &lt;p class="egp-sidebar-brand-tagline">Pane Perfect Experience&lt;/p>
-    &lt;/div>
-  &lt;/div>
+  <!-- Sidebar Header -->
+  <div class="egp-sidebar-header">
+    <img src="./assets/images/logo-d.png" alt="Logo" class="egp-sidebar-logo" />
+    <div class="egp-sidebar-title">
+      <p class="egp-sidebar-brand-name">EdgePane</p>
+      <p class="egp-sidebar-brand-tagline">Pane Perfect Experience</p>
+    </div>
+  </div>
 
-  &lt;!-- Sidebar Menu -->
-  &lt;ul class="egp-sidebar-menu">
-    &lt;li class="egp-sidebar-section-heading" data-section-heading="MAIN NAVIGATION">&lt;/li>
-    &lt;li>
-      &lt;a href="#" class="egp-sidebar-link">
-        &lt;span class="egp-sidebar-link-icon">&lt;i class="bi bi-house">&lt;/i>&lt;/span>
-        &lt;span class="egp-sidebar-link-text">Dashboard&lt;/span>
-      &lt;/a>
-    &lt;/li>
-    &lt;li>
-      &lt;a href="#" class="egp-sidebar-link">
-        &lt;span class="egp-sidebar-link-icon">&lt;i class="bi bi-gear">&lt;/i>&lt;/span>
-        &lt;span class="egp-sidebar-link-text">Settings&lt;/span>
-      &lt;/a>
-    &lt;/li>
-    &lt;li class="egp-has-dropdown">
-      &lt;a href="#" class="egp-sidebar-link">
-        &lt;span class="egp-sidebar-link-icon">&lt;i class="bi bi-folder">&lt;/i>&lt;/span>
-        &lt;span class="egp-sidebar-link-text">Projects&lt;/span>
-        &lt;span class="egp-sidebar-dropdown-icon">&lt;i class="bi bi-chevron-down">&lt;/i>&lt;/span>
-      &lt;/a>
-      &lt;ul class="egp-sidebar-dropdown-menu">
-        &lt;li>&lt;a href="#">Project A&lt;/a>&lt;/li>
-        &lt;li>&lt;a href="#">Project B&lt;/a>&lt;/li>
-      &lt;/ul>
-    &lt;/li>
-  &lt;/ul>
-&lt;/nav>
+  <!-- Sidebar Menu -->
+  <ul class="egp-sidebar-menu">
+    <li class="egp-sidebar-section-heading" data-section-heading="MAIN NAVIGATION"></li>
+    <li>
+      <a href="#" class="egp-sidebar-link">
+        <span class="egp-sidebar-link-icon"><i class="bi bi-house"></i></span>
+        <span class="egp-sidebar-link-text">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" class="egp-sidebar-link">
+        <span class="egp-sidebar-link-icon"><i class="bi bi-gear"></i></span>
+        <span class="egp-sidebar-link-text">Settings</span>
+      </a>
+    </li>
+    <li class="egp-has-dropdown">
+      <a href="#" class="egp-sidebar-link">
+        <span class="egp-sidebar-link-icon"><i class="bi bi-folder"></i></span>
+        <span class="egp-sidebar-link-text">Projects</span>
+        <span class="egp-sidebar-dropdown-icon"><i class="bi bi-chevron-down"></i></span>
+      </a>
+      <ul class="egp-sidebar-dropdown-menu">
+        <li><a href="#">Project A</a></li>
+        <li><a href="#">Project B</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
-&lt;!-- Main Content -->
-&lt;div class="egp-main-content">
-  &lt;button class="egp-sidebar-toggle">☰&lt;/button>
-  &lt;h1>Welcome&lt;/h1>
-&lt;/div>
+<!-- Main Content -->
+<div class="egp-main-content">
+  <button class="egp-sidebar-toggle">☰</button>
+  <h1>Welcome</h1>
+</div>
 
-&lt;!-- Overlay -->
-&lt;div class="egp-sidebar-overlay">&lt;/div>
+<!-- Overlay -->
+<div class="egp-sidebar-overlay"></div>
 ```
 
 JS:
@@ -114,7 +121,7 @@ edgePane.init({
 
 ---
 
-## License
+## 📜  License
 
 MIT License
 
