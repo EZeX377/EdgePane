@@ -121,6 +121,16 @@ edgePane.init({
 
 ---
 
+## 💡  Issues
+
+Found a bug? Have a feature request?
+
+Please open an issue here → GitHub Issues
+
+<sub>This helps improve the project for everyone!</sub>
+
+---
+
 ## 📜  MIT License
 
 <sub>MIT License</sub>
