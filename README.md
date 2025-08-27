@@ -125,7 +125,7 @@ edgePane.init({
 
 Found a bug? Have a feature request?
 
-Please open an issue here → GitHub Issues
+Please open an issue here → 👉 [GitHub Issues](https://github.com/EZeX377/EdgePane/issues)
 
 <sub>This helps improve the project for everyone!</sub>
 
