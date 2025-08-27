@@ -92,30 +92,8 @@ JS:
 ```js
 edgePane.init({
     sidebarState: "open",
-    hoverExpand: true,
     closeOnClickOutside: true,
-    dropdownMode: "single",
-    rememberDropdowns: true,
-    fontFamily: "'Montserrat', sans-serif",
-    sidebarWidth: "18rem",
-    sidebarColor: "rgba(225,225,225,1)",
-    textColor: "rgba(70,70,70,1)",
-    activeLinkBg: "rgba(180,180,180,1)",
-    activeLinkColor: "rgba(70,70,70,1)",
-    showBrand: true,
-    onSidebarToggle: function (state) {
-        console.log("Sidebar state changed →", state);
-        // Example: update a status badge
-        document.querySelector("#sidebarStatus").textContent = state;
-    },
-    onDropdownToggle: function (id, isOpen) {
-        console.log("Dropdown toggled →", id, "Open:", isOpen);
-        // Example: highlight the dropdown if open
-        const el = document.getElementById(id);
-        if (el) {
-            el.style.backgroundColor = isOpen ? "rgba(0,150,136,0.1)" : "transparent";
-        }
-    },
+    dropdownMode: "single"
 });
 ```
 
