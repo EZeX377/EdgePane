@@ -1,5 +1,5 @@
 /*!
- * EdgePane Sidebar (EGP version)
+ * EdgePane Sidebar
  * ------------------------------------
  * A lightweight, responsive, customizable sidebar
  * with dropdowns, branding, overlay, and theming.
@@ -30,8 +30,6 @@
  *  - Bootstrap Icons (optional, for icons)
  *
  * ------------------------------------
- * NOTE: This is the MINIFIED build.
- * For readable code, see /src/edgepane.js
  */
 
 (function (root, factory) {
@@ -180,7 +178,7 @@
                             })
                             .first();
 
-                        if (matchPer.length) {
+                        if ((matchPer ?? []).length) {
                             $(".egp-sidebar-link").removeClass("active");
                             matchPer.addClass("active");
                         }
@@ -192,7 +190,7 @@
             $(".egp-sidebar-link").removeClass("active");
 
             // set new active
-            (matchPer.length
+            ((matchPer ?? []).length
                 ? matchPer
                 : $(".egp-sidebar-link").first()
             ).addClass("active");
