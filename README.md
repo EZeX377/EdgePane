@@ -13,14 +13,12 @@
 
 </div>
 
----
 
 ## 📖 Documentation
 
 Full documentation is available here:  
 👉 [EdgePane Docs](https://ezex377.github.io/EdgePane/index.html)
 
----
 
 ## 🚀 Installation (via CDN)
 
@@ -30,7 +28,6 @@ Add the following to your HTML:
 <link rel="stylesheet" href="https://ezex377.github.io/EdgePane/dist/edgepane.min.css" />
 <script src="https://ezex377.github.io/EdgePane/dist/edgepane.min.js"></script>
 ```
----
 
 ## ⚡ Basic usage
 
@@ -98,7 +95,6 @@ edgePane.init({
 });
 ```
 
----
 
 ## 💡  Issues
 
@@ -108,7 +104,7 @@ Please open an issue here → 👉 [GitHub Issues](https://github.com/EZeX377/Ed
 
 <sub>This helps improve the project for everyone!</sub>
 
----
+
 
 ## 📜  MIT License
 
